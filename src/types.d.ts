@@ -1,3 +1,4 @@
+// src/types.d.ts
 import '@react-three/fiber';
 
 declare global {
@@ -10,8 +11,15 @@ declare global {
   }
 }
 
-declare module '*.glb';
-declare module '*.png';
+declare module '*.glb' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.png' {
+  const src: string;
+  export default src;
+}
 
 declare module 'meshline' {
   export const MeshLineGeometry: any;
