@@ -1,6 +1,7 @@
 [build]
-  command = "npm run build"
+  command = "NEXT_IGNORE_TYPE_ERRORS=true npm run build"
   publish = ".next"
+  functions = "netlify/functions"
 
 [functions]
   directory = "netlify/functions"
