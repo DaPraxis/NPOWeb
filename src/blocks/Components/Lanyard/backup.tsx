@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Suspense } from "react";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
@@ -21,10 +20,12 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 
-extend({ MeshLineGeometry, MeshLineMaterial });
-
 const cardGLB = "/assets/lanyard/card.glb";
 const lanyardTexture = "/assets/lanyard/lanyard.png";
+
+import "./Lanyard.css";
+
+extend({ MeshLineGeometry, MeshLineMaterial });
 
 interface LanyardProps {
   position?: [number, number, number];
@@ -34,16 +35,13 @@ interface LanyardProps {
 }
 
 export default function Lanyard({
-  position = [0, 0, 20],
+  position = [0, 0, 30],
   gravity = [0, -40, 0],
   fov = 20,
   transparent = true,
 }: LanyardProps) {
   return (
-    <div
-      suppressHydrationWarning
-      className="relative z-0 w-full"
-    >
+    <div className="lanyard-wrapper">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent }}
@@ -52,11 +50,9 @@ export default function Lanyard({
         }
       >
         <ambientLight intensity={Math.PI} />
-        <Suspense fallback={null}>
-          <Physics gravity={gravity} timeStep={1 / 60}>
-            <Band />
-          </Physics>
-        </Suspense>
+        <Physics gravity={gravity} timeStep={1 / 60}>
+          <Band />
+        </Physics>
         <Environment blur={0.75}>
           <Lightformer
             intensity={2}
@@ -98,6 +94,7 @@ interface BandProps {
 }
 
 function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
+  // Using "any" for refs since the exact types depend on Rapier's internals
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
   const j1 = useRef<any>(null);
@@ -118,17 +115,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
     linearDamping: 4,
   };
 
-  const [isSmall, setIsSmall] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmall(window.innerWidth < 1024);
-    };
-    handleResize(); // set once on mount
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
+  const { nodes, materials } = useGLTF(cardGLB) as any;
+  const texture = useTexture(lanyardTexture);
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([
@@ -141,9 +129,21 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
   const [hovered, hover] = useState(false);
 
-  const { nodes, materials } = useGLTF(cardGLB) as any;
-  const texture = useTexture(lanyardTexture);
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  const [isSmall, setIsSmall] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 1024;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      setIsSmall(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return (): void => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
@@ -200,30 +200,54 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
     }
   });
 
+  curve.curveType = "chordal";
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
   return (
     <>
       <group position={[0, 4, 0]}>
-        <RigidBody ref={fixed} {...segmentProps} type="fixed" />
-        {[j1, j2, j3].map((ref, i) => (
-          <RigidBody
-            key={i}
-            position={[0.5 + i * 0.5, 0, 0]}
-            ref={ref}
-            {...segmentProps}
-            type="dynamic"
-          >
-            <BallCollider args={[0.1]} />
-          </RigidBody>
-        ))}
+        <RigidBody
+          ref={fixed}
+          {...segmentProps}
+          type={"fixed" as RigidBodyProps["type"]}
+        />
+        <RigidBody
+          position={[0.5, 0, 0]}
+          ref={j1}
+          {...segmentProps}
+          type={"dynamic" as RigidBodyProps["type"]}
+        >
+          <BallCollider args={[0.1]} />
+        </RigidBody>
+        <RigidBody
+          position={[1, 0, 0]}
+          ref={j2}
+          {...segmentProps}
+          type={"dynamic" as RigidBodyProps["type"]}
+        >
+          <BallCollider args={[0.1]} />
+        </RigidBody>
+        <RigidBody
+          position={[1.5, 0, 0]}
+          ref={j3}
+          {...segmentProps}
+          type={"dynamic" as RigidBodyProps["type"]}
+        >
+          <BallCollider args={[0.1]} />
+        </RigidBody>
         <RigidBody
           position={[2, 0, 0]}
           ref={card}
           {...segmentProps}
-          type={dragged ? "kinematicPosition" : "dynamic"}
+          type={
+            dragged
+              ? ("kinematicPosition" as RigidBodyProps["type"])
+              : ("dynamic" as RigidBodyProps["type"])
+          }
         >
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
           <group
-            scale={2.5}
+            scale={2.25}
             position={[0, -1.2, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
