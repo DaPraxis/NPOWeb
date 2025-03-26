@@ -35,6 +35,7 @@ export const HorizontalSlides = ({ children }) => {
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
+
       })
     }, wrapperRef)
 

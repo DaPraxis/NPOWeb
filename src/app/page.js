@@ -10,6 +10,10 @@ import { useWindowSize } from 'react-use'
 import { useScroll} from '../Components/hooks/use-scroll'
 import {Parallax} from '../Components/Parallax/Parallax'
 import { Link } from '../Components/Link/Link'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Lanyard = dynamic(() => import('@/blocks/Components/Lanyard/Lanyard'), {
   ssr: false,
@@ -83,6 +87,29 @@ export default function Home() {
     console.log(e)
   })
 
+  useEffect(() => {
+    const pinTarget = document.querySelector('.sticky-title')
+    const content = document.getElementById('why-content')
+    const wrapper = document.getElementById('why-wrapper')
+  
+    if (!pinTarget || !content || !wrapper) return
+  
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: wrapper,
+        start: 'top 33%',
+        end: () => `+=${content.scrollHeight}`,
+        pin: pinTarget,
+        pinSpacing: false,
+        scrub: true,
+        invalidateOnRefresh: true,
+      })
+    })
+  
+    return () => ctx.revert()
+  }, [])
+  
+
 
   return (
     <div>
@@ -122,68 +149,68 @@ export default function Home() {
           inverted
         />
       </section>
-      <section className="mb-40 lg:mb-[640px]">
-        <div className="grid grid-cols-12 gap-4 px-4 lg:px-24">
-          {/* Sticky headline on desktop */}
-          {/* <Parallax speed={0}> */}
-            <p className="hidden lg:block lg:w-1/3 sticky top-[33%] self-start border-l-4 border-black pl-8 text-2xl font-bold">
-              Why smooth scroll?
+      <section className="relative">
+        <div className="grid grid-cols-12 gap-4 px-4 lg:px-24" id="why-wrapper">
+          {/* Sticky Title on the Left */}
+          <div
+            className="hidden lg:block col-span-4"
+            id="why-sticky"
+          >
+            <p className="sticky-title text-2xl font-bold border-l-4 border-black pl-8 leading-tight">
+              Why<br />smooth<br />scroll?
             </p>
-            {/* </Parallax> */}
+          </div>
 
-          {/* Features content */}
-          <aside ref={whyRectRef} className="col-span-12 lg:col-start-7 lg:col-span-6 mt-12 lg:mt-64 space-y-32">
-              <div>
-                <Parallax speed={1}>
-                  <p className="text-base">
-                    We’ve heard all the reasons to not use smooth scroll. It feels hacky.
-                    It’s inaccessible. It’s not performant. It’s over-engineered. And
-                    historically, those were all true. But we like to imagine things as
-                    they could be, then build them. So, why should you use smooth scroll?
-                  </p>
-                </Parallax>  
-              </div>
-              <div>
-                <Parallax speed={1}>
-                  <h4 className="text-xl font-semibold text-black mb-4">
-                    Create more immersive interfaces
-                  </h4>
-                  <p className="text-base">
-                    Unlock the creative potential and impact of your web experiences.
-                    Smoothing the scroll pulls users into the flow of the experience that
-                    feels so substantial that they forget they’re navigating a web page.
-                  </p>
-                </Parallax>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-black mb-4">
-                  Normalize all your user inputs
-                </h4>
-                <p className="text-base">
-                  Give all your users the same (dope) experience whether they’re using
-                  trackpads, mouse wheels, or otherwise. With smooth scroll, you control
-                  how silky, heavy, or responsive the experience should be — no matter
-                  the input. Magic!
-                </p>
-              </div>
-              <div>
-                <h4 className="text-xl font-semibold text-black mb-4">
-                  Make your animations flawless
-                </h4>
-                <p className="text-base">
-                  Synchronization with native scroll is not reliable. Those jumps and
-                  delays with scroll-linked animations are caused by multi-threading,
-                  where modern browsers run animations/effects asynchronously with the
-                  scroll. Smooth scroll fixes this.
-                </p>
-              </div>
+          {/* Scrollable Feature Content on the Right */}
+          <aside
+            className="col-span-12 lg:col-start-7 lg:col-span-6 space-y-32 mt-12 lg:mt-64"
+            id="why-content"
+            ref={whyRectRef}
+          >
+            <div>
+              <p className="text-base">
+              We’ve heard all the reasons to not use smooth scroll. It feels
+                hacky. It’s inaccessible. It’s not performant. It’s
+                over-engineered. And historically, those were all true. But we
+                like to imagine things as they could be, then build them. So,
+                why should you use smooth scroll?
+              </p>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold mb-4">
+                Create more immersive interfaces
+              </h4>
+              <p>Unlock the creative potential and impact of your web
+                experiences. Smoothing the scroll pulls users into the flow of
+                the experience that feels so substantial that they forget
+                they’re navigating a web page.</p>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold mb-4">
+              Normalize all your user inputs
+              </h4>
+              <p>Give all your users the same (dope) experience whether they’re
+                using trackpads, mouse wheels, or otherwise. With smooth scroll,
+                you control how silky, heavy, or responsive the experience
+                should be — no matter the input. Magic!</p>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold mb-4">
+                Make your animations flawless
+              </h4>
+              <p>Synchronization with native scroll is not reliable. Those jumps
+                and delays with scroll-linked animations are caused by
+                multi-threading, where modern browsers run animations/effects
+                asynchronously with the scroll. Smooth scroll fixes this.</p>
+            </div>
           </aside>
         </div>
       </section>
 
+
       <section className="rethink">
         {/* Top Section: Highlight + Comparison */}
-        <div className="grid grid-cols-12 gap-4 mb-40 lg:mb-[240px] px-10 lg:px-24">
+        <div className="grid grid-cols-12 gap-4 mb-40 lg:mb-[240px] px-10 lg:px-24 mt-[480px]">
           {/* Highlight Text (with left border on desktop) */}
           <Parallax speed={-0.5}>
             <p className="h1">Rethinking smooth scroll</p>
