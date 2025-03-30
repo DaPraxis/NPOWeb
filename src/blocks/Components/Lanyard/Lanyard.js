@@ -7,7 +7,7 @@ import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphe
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 const cardGLB = "/assets/lanyard/card.glb";
-const lanyard = "/assets/lanyard/lanyard.png";
+const lanyard = "/assets/lanyard/lanyard2.png";
 
 import * as THREE from 'three';
 import './Lanyard.css';
@@ -101,7 +101,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[4.2, 4, 0]}>
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         <RigidBody position={[0.5, 0, 0]} ref={j1} {...segmentProps}>
           <BallCollider args={[0.1]} />

@@ -12,6 +12,8 @@ import {Parallax} from '../Components/Parallax/Parallax'
 import { Link } from '../Components/Link/Link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Button } from '../Components/ui/button'
+import DecryptedText from '../blocks/TextAnimations/DecryptedText/DecryptedText'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -119,6 +121,26 @@ export default function Home() {
       </div>
 
       {/* ✅ Initial vertical scroll section */}
+      <section className="min-h-screen flex flex-col items-start justify-center text-left px-6 py-20 bg-gradient-to-br from-blue-100 to-white pl-15">
+        {/* <h1 className="text-5xl md:text-6xl font-bold mb-4">Your Research Journey, Your Way.</h1>
+         */}
+        <DecryptedText 
+          text='Your Research Journey, Your Way.'
+          animateOn="view"
+          speed={35}
+          maxIterations={2}
+          sequential={true}
+          parentClassName='text-5xl md:text-6xl font-bold mb-4'
+          useOriginalCharsOnly={true}
+          />
+        <p className="text-xl md:text-2xl mb-8 max-w-2xl">
+          Labs, Competitions, or Startups — FutureEra helps you turn your ideas into impact.
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <Button variant="outline">Join Our Discord</Button>
+        </div>
+      </section>
+      
       <section className="z-10 min-h-screen flex flex-col gap-8 p-6 pointer-events-none">
         <Card
           className="pointer-events-auto"
