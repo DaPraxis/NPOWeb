@@ -32,6 +32,7 @@ export default function Home() {
   const addThreshold = useStore(({ addThreshold }) => addThreshold)
   const { height: windowHeight } = useWindowSize()
   const [whyRectRef, whyRect] = useRect()
+  const [lanyardLoaded, setLanyardLoaded] = useState(false);
 
   useScroll(({ scroll }) => {
     setHasScrolled(scroll > 10)
@@ -117,24 +118,32 @@ export default function Home() {
 
   return (
     <div>
+      <div
+        className={`fixed inset-0 z-50 bg-white flex items-center justify-center transition-opacity duration-700 ${
+          lanyardLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
+      >
+        <div className="animate-spin h-12 w-12 border-4 border-blue-500 border-t-transparent rounded-full" />
+      </div>
       {/* ✅ Fixed 3D canvas background */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} />
+        <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>
       </div>
 
       {/* ✅ Initial vertical scroll section */}
       <section className="min-h-screen flex flex-col items-start justify-center text-left px-6 py-20 bg-gradient-to-br from-blue-100 to-white pl-15">
         {/* <h1 className="text-5xl md:text-6xl font-bold mb-4">Your Research Journey, Your Way.</h1>
          */}
-        <DecryptedText 
-          text='Your Research Journey, Your Way.'
-          animateOn="view"
-          speed={55}
-          maxIterations={2}
-          sequential={true}
-          parentClassName='text-5xl md:text-6xl font-bold mb-4'
-          useOriginalCharsOnly={true}
-          />
+         {lanyardLoaded &&
+          <DecryptedText 
+            text='Your Research Journey, Your Way.'
+            animateOn="view"
+            speed={55}
+            maxIterations={2}
+            sequential={true}
+            parentClassName='text-5xl md:text-6xl font-bold mb-4'
+            useOriginalCharsOnly={true}
+            />}
         <p className="text-xl md:text-2xl mb-8 max-w-2xl">
           Research Labs, Competitions, Grants or Startups — FutureEra helps you turn your ideas into impact.
         </p>
@@ -247,7 +256,7 @@ export default function Home() {
             <p className="sticky-title text-4xl font-bold border-l-4 border-black pl-8 leading-tight mt-2 text-transform: uppercase">
             Start Anywhere. Grow Everywhere.<br/>
             <span className="text-xl border-black pl-8 leading-tight mt-2 text-transform: capitalize ">Our programs are built to evolve with you. 
-              Whether you're starting with an idea, a lab, or a competition — you can grow in any direction.</span>
+              Whether you're starting with an idea, a project, or a competition — you can grow in any direction.</span>
             </p>
           </div>
 
@@ -271,7 +280,7 @@ export default function Home() {
                 className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
                 number="🏆 Competition Mentorship"
                 text="Join a challenge, build a team, and get coached by experts to turn ideas into award-winning projects."
-                image="/assets/comp.png"
+                image="/assets/grant.png"
               />
             </div>
             <div>
@@ -279,6 +288,8 @@ export default function Home() {
                 className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
                 number="💰 Grant & Startup Support"
                 text="Apply for funding, build your startup, and get support from mentors in business, tech, and design."
+                image="/assets/comp.png"
+                inverted
               />
             </div>
           </aside>

@@ -33,7 +33,7 @@ export const Card = ({
         <img
           src={image}
           alt=""
-          className="absolute left-1/5 top-1/2 transform -translate-y-1/2 w-144 h-144 md:w-144 md:h-144 object-contain z-10 drop-shadow-xl"
+          className="absolute left-1/5 top-1/2 transform -translate-y-1/2 w-150 h-150 md:w-150 md:h-150 object-contain z-10 drop-shadow-xl"
         />
       )}
     </div>
