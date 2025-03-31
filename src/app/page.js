@@ -14,6 +14,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '../Components/ui/button'
 import DecryptedText from '../blocks/TextAnimations/DecryptedText/DecryptedText'
+import RotatingText from '../blocks/TextAnimations/RotatingText/RotatingText'
+import CountUp from '../blocks/TextAnimations/CountUp/CountUp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -127,50 +129,114 @@ export default function Home() {
         <DecryptedText 
           text='Your Research Journey, Your Way.'
           animateOn="view"
-          speed={35}
+          speed={55}
           maxIterations={2}
           sequential={true}
           parentClassName='text-5xl md:text-6xl font-bold mb-4'
           useOriginalCharsOnly={true}
           />
         <p className="text-xl md:text-2xl mb-8 max-w-2xl">
-          Labs, Competitions, or Startups — FutureEra helps you turn your ideas into impact.
+          Research Labs, Competitions, Grants or Startups — FutureEra helps you turn your ideas into impact.
         </p>
         <div className="flex flex-wrap gap-4">
           <Button variant="outline">Join Our Discord</Button>
         </div>
       </section>
-      
-      <section className="z-10 min-h-screen flex flex-col gap-8 p-6 pointer-events-none">
-        <Card
-          className="pointer-events-auto"
-          number="01"
-          text="Loss of performance budget due to using CSS transforms --"
-          inverted
-        />
-        <Card
-          className="pointer-events-auto"
-          number="02"
-          text="Render blocking resources causing layout shift"
-        />
-        <Card
-          className="pointer-events-auto"
-          number="03"
-          text="Inefficient animation triggering reflow"
-          inverted
-        />
-        <Card
-          className="pointer-events-auto"
-          number="04"
-          text="GPU overdraw caused by layering"
-        />
-        <Card
-          className="pointer-events-auto"
-          number="05"
-          text="LCP element shifting due to transform: translateZ(0)"
-          inverted
-        />
+
+      <section className="min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-16 bg-white">
+        {/* Text Content */}
+        <div className="w-full md:w-1/2 z-10">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-blue-900 mb-6">
+            Unlocking youth potential through STEM research.
+          </h1>
+          <p className="text-lg md:text-xl text-gray-800 mb-6 max-w-xl">
+            FutureEra is a youth-driven nonprofit connecting high school students to world-class research labs, competitions, and startup support.
+          </p>
+
+          {/* Metrics Grid */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm md:text-base text-gray-600 mb-8">
+            <div>
+              <span className="text-2xl font-bold text-blue-600">
+                <CountUp
+                  from={0}
+                  to={20}
+                  duration={0.5}
+                  separator=","
+                  direction="up"
+                  className="count-up-text"
+                />
+                +
+              </span>
+              <div className="text-sm md:text-base text-gray-600">
+                University Lab Partners
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl font-bold text-blue-600">
+                <CountUp
+                  from={0}
+                  to={100}
+                  duration={0.5}
+                  separator=","
+                  direction="up"
+                  className="count-up-text"
+                />
+                +
+              </span>
+              <div className="text-sm md:text-base text-gray-600">
+                Mentored Research Projects
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl font-bold text-blue-600">
+                  <CountUp
+                    from={0}
+                    to={10}
+                    duration={0.5}
+                    separator=","
+                    direction="up"
+                    className="count-up-text"
+                  />
+                  +
+                </span>
+                <div className="text-sm md:text-base text-gray-600">
+                  National & Global Competitions
+                </div>
+            </div>
+            <div>
+              <span className="text-2xl font-bold text-blue-600">
+                    <CountUp
+                      from={0}
+                      to={15}
+                      duration={0.5}
+                      separator=","
+                      direction="up"
+                      className="count-up-text"
+                    />
+                    +
+                  </span>
+                  <div className="text-sm md:text-base text-gray-600">
+                  Grants & Student Startups
+                  </div>
+            </div>
+          </div>
+
+          <button className="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition">
+            Read our Story
+          </button>
+        </div>
+
+        {/* Image Side */}
+        <div className="w-full md:w-1/2 mt-12 md:mt-0">
+          <img
+            src="/assets/student1.jpg"
+            alt="FutureEra student"
+            className="w-full rounded-lg shadow-xl object-cover"
+          />
+        </div>
       </section>
+
+
       <section className="relative">
         <div className="grid grid-cols-12 gap-4 px-4 lg:px-24" id="why-wrapper">
           {/* Sticky Title on the Left */}
@@ -178,8 +244,10 @@ export default function Home() {
             className="hidden lg:block col-span-4"
             id="why-sticky"
           >
-            <p className="sticky-title text-2xl font-bold border-l-4 border-black pl-8 leading-tight">
-              Why<br />smooth<br />scroll?
+            <p className="sticky-title text-4xl font-bold border-l-4 border-black pl-8 leading-tight mt-2 text-transform: uppercase">
+            Start Anywhere. Grow Everywhere.<br/>
+            <span className="text-xl border-black pl-8 leading-tight mt-2 text-transform: capitalize ">Our programs are built to evolve with you. 
+              Whether you're starting with an idea, a lab, or a competition — you can grow in any direction.</span>
             </p>
           </div>
 
@@ -190,40 +258,28 @@ export default function Home() {
             ref={whyRectRef}
           >
             <div>
-              <p className="text-base">
-              We’ve heard all the reasons to not use smooth scroll. It feels
-                hacky. It’s inaccessible. It’s not performant. It’s
-                over-engineered. And historically, those were all true. But we
-                like to imagine things as they could be, then build them. So,
-                why should you use smooth scroll?
-              </p>
+            <Card
+              className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
+              number="🔬 University Lab Matching"
+              text="Connect with university labs and real researchers. Explore your curiosity through project-based mentorship."
+              image="/assets/lab.png"
+              inverted
+            />
             </div>
             <div>
-              <h4 className="text-xl font-semibold mb-4">
-                Create more immersive interfaces
-              </h4>
-              <p>Unlock the creative potential and impact of your web
-                experiences. Smoothing the scroll pulls users into the flow of
-                the experience that feels so substantial that they forget
-                they’re navigating a web page.</p>
+              <Card
+                className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
+                number="🏆 Competition Mentorship"
+                text="Join a challenge, build a team, and get coached by experts to turn ideas into award-winning projects."
+                image="/assets/comp.png"
+              />
             </div>
             <div>
-              <h4 className="text-xl font-semibold mb-4">
-              Normalize all your user inputs
-              </h4>
-              <p>Give all your users the same (dope) experience whether they’re
-                using trackpads, mouse wheels, or otherwise. With smooth scroll,
-                you control how silky, heavy, or responsive the experience
-                should be — no matter the input. Magic!</p>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">
-                Make your animations flawless
-              </h4>
-              <p>Synchronization with native scroll is not reliable. Those jumps
-                and delays with scroll-linked animations are caused by
-                multi-threading, where modern browsers run animations/effects
-                asynchronously with the scroll. Smooth scroll fixes this.</p>
+              <Card
+                className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
+                number="💰 Grant & Startup Support"
+                text="Apply for funding, build your startup, and get support from mentors in business, tech, and design."
+              />
             </div>
           </aside>
         </div>
