@@ -28,7 +28,7 @@ export const HorizontalSlides = ({ children }) => {
         ease: 'none',
         scrollTrigger: {
           trigger: wrapperRef.current,
-          start: 'top top',
+          start: 'top+=100 top',
           end: 'bottom 10%',
           scrub: true,
           pin: true,

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@netlify/next": "^1.4.9",
+    "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",

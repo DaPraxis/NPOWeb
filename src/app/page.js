@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { Card } from '../Components/Card/Card'
+import { CardWithZoom } from '../Components/Card/CardWithZoom'
 import { HorizontalSlides } from '../Components/HorizontalSlides/HorizontalSlides'
 import { useRect } from '@studio-freight/hamo'
 import { useEffect, useRef, useState } from 'react'
@@ -16,6 +17,8 @@ import { Button } from '../Components/ui/button'
 import DecryptedText from '../blocks/TextAnimations/DecryptedText/DecryptedText'
 import RotatingText from '../blocks/TextAnimations/RotatingText/RotatingText'
 import CountUp from '../blocks/TextAnimations/CountUp/CountUp'
+import { NavigationMenuDemo } from '@/Components/Navigation/NavigationBar'
+import BounceCardsWithText from '@/Components/Card/BouncingCardWithText'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -125,6 +128,42 @@ export default function Home() {
   
   const showLoading = (lanyardLoaded && minDelayPassed)
 
+  const testimonials = [
+    {
+      quote: "I never imagined working with university researchers in high school.",
+      name: "Leila Zhang",
+      grade: "Grade 11, Toronto",
+    },
+    {
+      quote: "My project on air quality just won an award thanks to mentorship!",
+      name: "Raymond W.",
+      grade: "Grade 12, Vancouver",
+    },
+    {
+      quote: "As a girl in STEM, I felt supported building a VR empathy simulator.",
+      name: "Sofia A.",
+      grade: "Grade 10, Waterloo",
+    },
+    {
+      quote: "FutureEra helped me write my first research proposal and win funding.",
+      name: "Daniel K.",
+      grade: "Grade 11, Ottawa",
+    },
+    {
+      quote: "This changed the way I think about data science and ethics.",
+      name: "Fatima S.",
+      grade: "Grade 12, Mississauga",
+    },
+  ];
+
+  const transformStyles = [
+    "rotate(5deg) translate(-150px)",
+    "rotate(0deg) translate(-70px)",
+    "rotate(-5deg)",
+    "rotate(5deg) translate(70px)",
+    "rotate(-5deg) translate(150px)",
+  ];
+
   return (
     <div>
       <div
@@ -138,6 +177,8 @@ export default function Home() {
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>
       </div>
+
+      {showLoading && <NavigationMenuDemo/>}
 
       {/* ✅ Initial vertical scroll section */}
       <section className="min-h-screen flex flex-col items-start justify-center text-left px-6 py-20 bg-gradient-to-br from-blue-100 to-white pl-15">
@@ -254,8 +295,7 @@ export default function Home() {
         </div>
       </section>
 
-
-      <section className="relative">
+      <section className="min-h-screen flex flex-col md:flex-row items-center justify-between">
         <div className="grid grid-cols-12 gap-4 px-4 lg:px-24" id="why-wrapper">
           {/* Sticky Title on the Left */}
           <div
@@ -305,81 +345,161 @@ export default function Home() {
         </div>
       </section>
 
-
-      <section className="rethink">
-        {/* Top Section: Highlight + Comparison */}
-        <div className="grid grid-cols-12 gap-4 mb-40 lg:mb-[240px] px-10 lg:px-24 mt-[480px]">
-          {/* Highlight Text (with left border on desktop) */}
-          <Parallax speed={-0.5}>
-            <p className="h1">Rethinking smooth scroll</p>
-          </Parallax>
-
-          {/* Comparison Text */}
-          <div className="col-span-12 lg:col-start-7 lg:col-span-4 mt-12 lg:mt-[128px]">
-            <Parallax speed={0.5}>
-              <p className="p">
-                We have to give props to libraries like{' '}
-                <Link
-                  className="contrast semi-bold"
-                  href="https://github.com/locomotivemtl/locomotive-scroll"
-                >
-                  Locomotive Scroll
-                </Link>{' '}
-                and{' '}
-                <Link
-                  className="contrast semi-bold"
-                  href="https://greensock.com/docs/v3/Plugins/ScrollSmoother"
-                >
-                  GSAP ScrollSmoother
-                </Link>
-                . They’re well built and well documented – and we’ve used them a
-                lot. But they still have issues that keep them from being
-                bulletproof.
-              </p>
-            </Parallax>
-          </div>
-        </div>
-      </section>
-
-      {/* <section className="h-screen h-full flex items-center justify-center z-10 relative"> */}
-        {/* ✅ Horizontal scroll section */}
-        <div ref={cardsRectRef} className='HS'>
+      <section className="min-h-screen z-10">
+        <div ref={cardsRectRef} className="HS">
           <HorizontalSlides>
-            <Card
-              className="min-w-[400px] mr-[60px] ml-[60px] mt-[300px] pointer-events-auto"
-              number="01"
-              text="Horizontal Card 1"
+            <CardWithZoom
+              inverted
+              blank
+              text="Featured PROGRAMS"
+              front
+            />
+            <CardWithZoom
+              number="🔬"
+              text="Girls in STEM"
+              detail="A mentorship + lab matching program supporting girls in scientific research. Weekly sessions + final project presentation."
+              image="/assets/girlSTEM.png"
               inverted
             />
-            <Card
-              className="min-w-[400px] mr-[60px] ml-[60px] mt-[300px] pointer-events-auto"
-              number="02"
-              text="Horizontal Card 2"
+            <CardWithZoom
+              number="🌍"
+              text="Equity in Innovation"
+              detail="Explore AI, data justice, and open government datasets to build research projects with social impact."
+              image="/assets/equity-data.jpg"
             />
-            <Card
-              className="min-w-[400px] mr-[60px] ml-[60px] mt-[300px] pointer-events-auto"
-              number="03"
-              text="Horizontal Card 3"
+            <CardWithZoom
+              number="🧠"
+              text="Research Without Barriers"
+              detail="Inclusive research pathways for all students. Laptops provided. 1:1 coaching for underserved communities."
+              image="/assets/barrier-free.jpg"
               inverted
             />
-            <Card
-              className="min-w-[400px] mr-[60px] ml-[60px] mt-[300px] pointer-events-auto"
-              number="04"
-              text="Horizontal Card 4"
+            <CardWithZoom
+              number="🌱"
+              text="Local to Global"
+              detail="Solve real issues in your community — and pitch your project to national competitions or grants."
+              image="/assets/community-research.jpg"
             />
-            <Card
-              className="min-w-[400px] mr-[60px] ml-[60px] mt-[300px] pointer-events-auto"
-              number="05"
-              text="Horizontal Card 5"
+            <CardWithZoom
               inverted
+              blank
             />
           </HorizontalSlides>
         </div>
-      {/* </section> */}
+      </section>
 
-      {/* ✅ Final vertical scroll section */}
-      <section className="h-screen bg-gray-200 flex items-center justify-center z-10">
-        <h2 className="text-3xl">Back to vertical scroll ⬇️</h2>
+      <section className="min-h-screen bg-white py-24 px-6 md:px-20">
+        <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">What Our Students Say</h2>
+        <div className='w-full flex justify-center'>
+          <BounceCardsWithText
+            testimonials={testimonials}
+            transformStyles={transformStyles}
+            containerWidth={1200}
+            containerHeight={400}
+            animationDelay={0.8}
+            animationStagger={0.08}
+            easeType="elastic.out(1, 0.5)"
+            enableHover={true}
+          />
+        </div>
+      </section>
+
+      <section className="min-h-screen bg-gray-50 py-24 px-6 md:px-20">
+        <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">News & Impact</h2>
+        <div className="space-y-8">
+          {[
+            {
+              date: "March 2025",
+              title: "FutureEra receives $15,000 Community STEM Grant",
+              summary: "Funding will expand our Girls in STEM and Open Research for All programs across Ontario.",
+            },
+            {
+              date: "Feb 2025",
+              title: "We spoke at Oakridge High School about AI & Ethics",
+              summary: "An interactive workshop with 100+ students exploring the future of responsible tech.",
+            },
+            {
+              date: "Jan 2025",
+              title: "Launch of ‘Research Without Barriers’ in 3 school districts",
+              summary: "Targeted mentorship and device access for underserved high school students.",
+            },
+          ].map((n, i) => (
+            <div key={i} className="bg-white p-6 rounded-xl shadow-sm border">
+              <p className="text-sm text-gray-500 mb-1">{n.date}</p>
+              <h4 className="text-xl font-semibold text-blue-800 mb-2">{n.title}</h4>
+              <p className="text-gray-700">{n.summary}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="min-h-screen bg-white py-24 px-6 md:px-20">
+        <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">Scholarships & Awards</h2>
+        <div className="grid md:grid-cols-2 gap-10">
+          {[
+            {
+              title: "Excellence in Research & Innovation",
+              desc: "Awarded to students demonstrating outstanding independent research or competition achievements.",
+            },
+            {
+              title: "STEM Equity Scholarship",
+              desc: "Supports students from underrepresented backgrounds in STEM who are making an impact in inclusion or accessibility.",
+            },
+            {
+              title: "Future Founders Award",
+              desc: "For students launching entrepreneurial or community-focused startups rooted in research and innovation.",
+            },
+            {
+              title: "Girls in STEM Fellowship",
+              desc: "A scholarship paired with mentorship and lab matching for girls excelling in science and technology.",
+            },
+          ].map((s, i) => (
+            <div key={i} className="bg-blue-50 p-6 rounded-xl shadow-sm border border-blue-100">
+              <h4 className="text-xl font-semibold text-blue-900 mb-2">{s.title}</h4>
+              <p className="text-gray-700">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-12 text-center">
+          <button className="bg-blue-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-800 transition">
+            Apply for Scholarship
+          </button>
+        </div>
+      </section>
+
+      <section className="min-h-screen bg-gray-100 py-24 px-6 md:px-20">
+        <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">Partnerships & Collaborations</h2>
+        <div className="grid md:grid-cols-2 gap-10 mb-12">
+          {[
+            {
+              org: "Toronto District School Board",
+              desc: "We’ve launched research mentorship programs across 10 high schools with TDSB.",
+            },
+            {
+              org: "University of Toronto Engineering Outreach",
+              desc: "Collaboration on lab matching and faculty talks to support high school STEM pathways.",
+            },
+            {
+              org: "Code for Change",
+              desc: "Partnered to offer web dev and civic tech competitions focused on social equity.",
+            },
+            {
+              org: "AI4Youth Canada",
+              desc: "Providing open-source AI research mentorship and competition coaching for students.",
+            },
+          ].map((p, i) => (
+            <div key={i} className="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+              <h4 className="text-xl font-semibold text-blue-800 mb-2">{p.org}</h4>
+              <p className="text-gray-700">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="text-center">
+          <p className="text-lg mb-4 font-medium">We’re always looking to collaborate with schools, universities, and mission-aligned organizations.</p>
+          <button className="bg-blue-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-800 transition">
+            Become a Partner
+          </button>
+        </div>
       </section>
     </div>
   )

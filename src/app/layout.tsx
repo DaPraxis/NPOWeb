@@ -27,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body className="antialiased bg-white text-black">
-        <LenisLayout>{children}</LenisLayout>
+        <LenisLayout>
+          {children}</LenisLayout>
       </body>
     </html>
   )
