@@ -119,11 +119,11 @@ export default function Home() {
   return (
     <div>
       <div
-        className={`fixed inset-0 z-50 bg-white flex items-center justify-center transition-opacity duration-700 ${
+        className={`fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center transition-opacity duration-700 ${
           lanyardLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
-        <div className="animate-spin h-12 w-12 border-4 border-blue-500 border-t-transparent rounded-full" />
+        <img src="/assets/loading.gif" alt="Loading animation" className="object-none w-128 m-8" />
       </div>
       {/* ✅ Fixed 3D canvas background */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
