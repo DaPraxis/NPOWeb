@@ -33,6 +33,15 @@ export default function Home() {
   const { height: windowHeight } = useWindowSize()
   const [whyRectRef, whyRect] = useRect()
   const [lanyardLoaded, setLanyardLoaded] = useState(false);
+  const [minDelayPassed, setMinDelayPassed] = useState(false)
+
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setMinDelayPassed(true)
+  }, 1500)
+
+  return () => clearTimeout(timer)
+}, [])
 
   useScroll(({ scroll }) => {
     setHasScrolled(scroll > 10)
@@ -114,13 +123,13 @@ export default function Home() {
     return () => ctx.revert()
   }, [])
   
-
+  const showLoading = (lanyardLoaded && minDelayPassed)
 
   return (
     <div>
       <div
         className={`fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center transition-opacity duration-700 ${
-          lanyardLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          showLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
         <img src="/assets/loading.gif" alt="Loading animation" className="object-none w-128 m-8" />
