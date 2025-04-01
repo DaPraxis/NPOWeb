@@ -38,7 +38,7 @@ export default function Home() {
   useEffect(() => {
   const timer = setTimeout(() => {
     setMinDelayPassed(true)
-  }, 1500)
+  }, 2000)
 
   return () => clearTimeout(timer)
 }, [])
@@ -143,7 +143,7 @@ export default function Home() {
       <section className="min-h-screen flex flex-col items-start justify-center text-left px-6 py-20 bg-gradient-to-br from-blue-100 to-white pl-15">
         {/* <h1 className="text-5xl md:text-6xl font-bold mb-4">Your Research Journey, Your Way.</h1>
          */}
-         {lanyardLoaded &&
+         {showLoading &&
           <DecryptedText 
             text='Your Research Journey, Your Way.'
             animateOn="view"
