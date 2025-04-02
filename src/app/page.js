@@ -41,7 +41,7 @@ export default function Home() {
   useEffect(() => {
   const timer = setTimeout(() => {
     setMinDelayPassed(true)
-  }, 2000)
+  }, 2400)
 
   return () => clearTimeout(timer)
 }, [])
@@ -171,7 +171,7 @@ export default function Home() {
           showLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
-        <img src="/assets/loading.gif" alt="Loading animation" className="object-none w-128 m-8" />
+        <img src="/assets/landing.gif" alt="Loading animation" className="object-none w-128 m-8" />
       </div>
       {/* ✅ Fixed 3D canvas background */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
