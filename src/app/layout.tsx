@@ -26,11 +26,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+      <head>
+        {/* ✅ Umami Analytics Script */}
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="cb358b90-c182-4a0f-9767-b4fedf5a636c"
+        />
+      </head>
       <body className="antialiased bg-white text-black">
-        <script data-goatcounter="https://futureera.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+        <script 
+          data-goatcounter="https://futureera.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js">
+        </script>
         <LenisLayout>
-          {children}</LenisLayout>
+          {children}
+        </LenisLayout>
       </body>
     </html>
   )

@@ -167,9 +167,8 @@ export default function Home() {
   return (
     <div>
       <div
-        className={`fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center transition-opacity duration-700 ${
-          showLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
+        className={`fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center transition-opacity duration-700`}
+        style={{ pointerEvents: showLoading ? 'none' : 'auto', opacity: showLoading ? 0 : 1 }}
       >
         <img src="/assets/landing.gif" alt="Loading animation" className="object-none w-128 m-8" />
       </div>
@@ -197,7 +196,7 @@ export default function Home() {
         <p className="text-xl md:text-2xl mb-8 max-w-2xl">
           Research Labs, Competitions, Grants or Startups — FutureEra helps you turn your ideas into impact.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 z-60">
           <Button variant="outline">Join Our Discord</Button>
         </div>
       </section>
