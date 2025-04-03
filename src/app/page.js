@@ -196,7 +196,9 @@ export default function Home() {
         <p className="text-xl md:text-2xl mb-8 max-w-2xl">
           Research Labs, Competitions, Grants or Startups — FutureEra helps you turn your ideas into impact.
         </p>
-        <div className="flex flex-wrap gap-4 z-60">
+        <div className="flex flex-wrap gap-4"
+          style={{ zIndex: showLoading ? 60: 0 }}
+        >
           <Button variant="outline">Join Our Discord</Button>
         </div>
       </section>
