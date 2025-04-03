@@ -27,6 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body className="antialiased bg-white text-black">
+        <script data-goatcounter="https://futureera.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
         <LenisLayout>
           {children}</LenisLayout>
       </body>
