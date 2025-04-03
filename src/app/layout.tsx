@@ -84,6 +84,21 @@ export default function RootLayout({
 
         {/* ✅ Canonical URL */}
         <link rel="canonical" href="https://futureera.foundation/" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "FutureEra",
+            "url": "https://futureera.foundation",
+            "logo": "https://futureera.foundation/assets/logo.png",
+            "sameAs": [
+              "https://www.instagram.com/yourhandle",
+              "https://www.linkedin.com/company/futureera",
+              "https://twitter.com/yourhandle"
+            ],
+            "description": "FutureEra is a nonprofit connecting high school students with research labs, competitions, grants, and startups through STEM mentorship."
+          })
+        }} />
       </head>
       <body className="antialiased bg-white text-black">
         <LenisLayout>
