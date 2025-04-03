@@ -87,7 +87,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
+            "@type": "EducationalOrganization",
             "name": "FutureEra",
             "url": "https://futureera.foundation",
             "logo": "https://futureera.foundation/assets/logo.png",
