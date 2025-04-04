@@ -177,16 +177,15 @@ export default function Home() {
 
   return (
     <div>
-      <div
-        className={`fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center transition-opacity duration-700`}
-        style={{ pointerEvents: showLoading ? 'none' : 'auto', opacity: showLoading ? 0 : 1 }}
-      >
-        {/* <img src="/assets/landing.gif" alt="Loading animation" className="object-none w-128 m-8" /> */}
-        {/* <TumblingTextAnimation/> */}
-        <Tumbling3DText spacing={0.05} tumbleAmount={Math.PI / 6} />
-      </div>
+      {!showLoading && (
+        <div
+          className="fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center"
+        >
+          <Tumbling3DText spacing={0.05} tumbleAmount={Math.PI / 6} />
+        </div>
+      )}
       {/* ✅ Fixed 3D canvas background */}
-      <div className="absolute top-0 left-0 w-full h-full z-0">
+      <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
         {minDelayPassed2? <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>:<></>}
       </div>
 
@@ -402,7 +401,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="min-h-screen bg-white py-24 px-6 md:px-20">
+      <section className="min-h-screen bg-white py-24 px-6 md:px-20 z-10">
         <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">What Our Students Say</h2>
         <div className='w-full flex justify-center'>
           <BounceCardsWithText
