@@ -19,6 +19,8 @@ import RotatingText from '../blocks/TextAnimations/RotatingText/RotatingText'
 import CountUp from '../blocks/TextAnimations/CountUp/CountUp'
 import { NavigationMenuDemo } from '@/Components/Navigation/NavigationBar'
 import BounceCardsWithText from '@/Components/Card/BouncingCardWithText'
+import TumblingTextAnimation from '@/Components/Animation/TumblingText'
+import Tumbling3DText from '@/Components/Animation/Tumbling3DText'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -36,15 +38,24 @@ export default function Home() {
   const { height: windowHeight } = useWindowSize()
   const [whyRectRef, whyRect] = useRect()
   const [lanyardLoaded, setLanyardLoaded] = useState(false);
-  const [minDelayPassed, setMinDelayPassed] = useState(false)
+  const [minDelayPassed, setMinDelayPassed] = useState(false);
+  const [minDelayPassed2, setMinDelayPassed2] = useState(false);
 
   useEffect(() => {
   const timer = setTimeout(() => {
     setMinDelayPassed(true)
-  }, 2400)
+  }, 3000)
 
   return () => clearTimeout(timer)
 }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMinDelayPassed2(true)
+    }, 2500)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   useScroll(({ scroll }) => {
     setHasScrolled(scroll > 10)
@@ -170,11 +181,13 @@ export default function Home() {
         className={`fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center transition-opacity duration-700`}
         style={{ pointerEvents: showLoading ? 'none' : 'auto', opacity: showLoading ? 0 : 1 }}
       >
-        <img src="/assets/landing.gif" alt="Loading animation" className="object-none w-128 m-8" />
+        {/* <img src="/assets/landing.gif" alt="Loading animation" className="object-none w-128 m-8" /> */}
+        {/* <TumblingTextAnimation/> */}
+        <Tumbling3DText spacing={0.05} tumbleAmount={Math.PI / 6} />
       </div>
       {/* ✅ Fixed 3D canvas background */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
-        <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>
+        {minDelayPassed2? <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>:<></>}
       </div>
 
       {showLoading && <NavigationMenuDemo/>}

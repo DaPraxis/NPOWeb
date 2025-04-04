@@ -18,6 +18,7 @@
     "@react-three/rapier": "^1.5.0",
     "@studio-freight/hamo": "^0.6.33",
     "@studio-freight/lenis": "^1.0.42",
+    "animejs": "^4.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
