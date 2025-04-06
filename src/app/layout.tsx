@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: 'FutureEra – Youth Research. Real Impact.',
   description: 'FutureEra connects high school students to world-class university labs, competitions, and startup grants through research mentorship and STEM pathways.',
   keywords: [
+    'research',
     'high school research',
     'youth STEM',
     'university lab matching',
