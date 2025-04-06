@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Roboto_Mono } from 'next/font/google'
 import LenisLayout from './lenis-layout' // client component
+import { Header } from '@/Components/Sections/Header'
 
 const inter = Inter({
   variable: '--font-sans',
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     title: 'FutureEra – Youth Research. Real Impact.',
     description: 'Mentorship. Research Labs. Competitions. Scholarships. Turn your ideas into impact with FutureEra.',
     images: ['/assets/og-image.jpg'], // Same as above
-    creator: '@FutureEraOrg', // Optional: your Twitter handle
+    creator: '@FutureEra_CA', // Optional: your Twitter handle
   },
   robots: {
     index: true,
@@ -92,9 +93,9 @@ export default function RootLayout({
             "url": "https://futureera.foundation",
             "logo": "https://futureera.foundation/assets/logo.png",
             "sameAs": [
-              "https://www.instagram.com/yourhandle",
+              "https://www.instagram.com/futureera_canada",
               "https://www.linkedin.com/company/futureera",
-              "https://twitter.com/yourhandle"
+              "https://x.com/FutureEra_CA"
             ],
             "description": "FutureEra is a nonprofit connecting high school students with research labs, competitions, grants, and startups through STEM mentorship."
           })
@@ -102,6 +103,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-white text-black">
         <LenisLayout>
+          <Header/>
           {children}
         </LenisLayout>
       </body>

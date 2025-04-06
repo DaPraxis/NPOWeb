@@ -189,7 +189,7 @@ export default function Home() {
         {minDelayPassed2? <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>:<></>}
       </div>
 
-      {showLoading && <NavigationMenuDemo/>}
+      {/* {showLoading && <NavigationMenuDemo/>} */}
 
       {/* ✅ Initial vertical scroll section */}
       <section className="min-h-screen flex flex-col items-start justify-center text-left px-6 py-20 bg-gradient-to-br from-blue-100 to-white pl-15">
