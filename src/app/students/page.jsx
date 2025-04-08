@@ -66,12 +66,12 @@ export default function StudentsPage() {
             {RESOURCES[activeTab].title}
           </h3>
 
-          <Carousel className="w-full">
+          <Carousel className="w-full" opts={{ align: "start", loop: false }}>
             <CarouselContent>
               {RESOURCES[activeTab].items.map((item, i) => (
                 <CarouselItem
                   key={i}
-                  className="md:basis-1/2 lg:basis-1/3 xl:basis-1/3"
+                  className="basis-[300px] lg:basis-[320px]"
                 >
                   <ResourceCard {...item}/>
                 </CarouselItem>
