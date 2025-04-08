@@ -111,7 +111,7 @@ export const RESOURCES = {
           title: "Interactive Media Lab",
           description: "Looking for observers + data entry volunteers for driving distraction experiment (April–May 2025).",
           status: "ongoing",
-          participants: 1,
+          participants: 12,
           date: "2025-05-06"
         },
         {

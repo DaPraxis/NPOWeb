@@ -327,9 +327,9 @@ export default function Home() {
             className="hidden lg:block col-span-4"
             id="why-sticky"
           >
-            <p className="sticky-title text-4xl font-bold border-l-4 border-black pl-8 leading-tight mt-2 text-transform: uppercase">
+            <p className="text-[#4E7CD9] sticky-title text-4xl font-bold border-l-4 border-[#4E7CD9] pl-8 leading-tight mt-2 text-transform: uppercase">
             Start Anywhere. Grow Everywhere.<br/>
-            <span className="text-xl border-black pl-8 leading-tight mt-2 text-transform: capitalize ">Our programs are built to evolve with you. 
+            <span className="text-black text-xl border-[#4E7CD9] pl-8 leading-tight mt-2 text-transform: capitalize ">Our programs are built to evolve with you. 
               Whether you're starting with an idea, a project, or a competition — you can grow in any direction.</span>
             </p>
           </div>
@@ -391,6 +391,7 @@ export default function Home() {
               text="Equity in Innovation"
               detail="Explore AI, data justice, and open government datasets to build research projects with social impact."
               image="/assets/equity-data.jpg"
+              inverted
             />
             <CardWithZoom
               number="🧠"
@@ -404,6 +405,8 @@ export default function Home() {
               text="Local to Global"
               detail="Solve real issues in your community — and pitch your project to national competitions or grants."
               image="/assets/community-research.jpg"
+              inverted
+
             />
             <CardWithZoom
               inverted

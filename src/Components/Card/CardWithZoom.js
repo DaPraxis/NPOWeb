@@ -2,6 +2,9 @@
 import { useEffect, useRef, useState } from 'react';
 import cn from 'clsx';
 import TrueFocus from "../../blocks/TextAnimations/TrueFocus/TrueFocus"
+import { CircleArrowRight, Sparkles} from 'lucide-react';
+import { Button } from '../ui/button';
+import SpotLightCard from '@/blocks/Components/SpotlightCard/SpotlightCard'
 
 export const CardWithZoom = ({ number, text, detail, image, className = '', inverted = false, blank = false, front = false}) => {
   const ref = useRef();
@@ -73,14 +76,34 @@ export const CardWithZoom = ({ number, text, detail, image, className = '', inve
     </div>
   }
   else{
-    blanks = <div
+    blanks = 
+    <SpotLightCard
       ref={ref}
       className={cn(
-        'min-w-[400px] mr-[80px] ml-[80px] mt-[300px] p-6 border-none leading-tight'
+        'min-w-[500px] mr-128 ml-[80px] mt-[300px] p-6 items-start border-none flex flex-col items-center justify-center rounded-2xl bg-[#111] shadow-lg',
+        'custom-spotlight-card'
       )}
-      style={{ transform: `scale(${scale})` }}
+      spotlightColor="rgba(255, 255, 255, 1)"
     >
-    </div>
+      {/* Icon aligned left */}
+      <Sparkles className="w-8 h-8 text-white mb-4" />
+
+      {/* Heading aligned left */}
+      <h2 className="text-2xl font-semibold text-white mb-2 text-left">
+        Boost Your Experience
+      </h2>
+
+      {/* Paragraph also left-aligned */}
+      <p className="text-sm text-gray-400 mb-6 max-w-sm text-left">
+        Design and submit you own program, get supported by our mentors.
+      </p>
+      <a href="/students" className='text-left'>
+        <Button variant="default" className="gap-2 px-6 py-2">
+          Explore All Programs
+          <CircleArrowRight className="w-4 h-4 text-white" />
+        </Button>
+      </a>
+    </SpotLightCard>
   }
   if (blank) {
     return blanks
