@@ -66,6 +66,67 @@ export function Header() {
 
         <NavigationMenu>
           <NavigationMenuList>
+            {/* For Students */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>For Students</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-4">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-100 to-white p-6 no-underline outline-none focus:shadow-md"
+                        href="/students"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium">Explore All Programs</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Mentorships, research labs, and grants for high school students.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/students#scholarships" title="Scholarships">
+                    View all scholarship opportunities.
+                  </ListItem>
+                  <ListItem href="/students#lab-matching" title="Lab Matching">
+                    Get mentored by university researchers.
+                  </ListItem>
+                  <ListItem href="/students#competitions" title="Competitions">
+                    Join national & global research competitions.
+                  </ListItem>
+                  <ListItem href="/students#grants" title="Grants & Startups">
+                    Apply for funding to launch your idea.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            {/* For Partners */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>For Partners</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-yellow-100 to-white p-6 no-underline outline-none focus:shadow-md"
+                        href="/partners"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium">Partner With Us</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Work with us to support student innovation and equity.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/partners#opportunities" title="Opportunities">
+                    Sponsor, co-host, or mentor a program.
+                  </ListItem>
+                  <ListItem href="/contact" title="Contact Us">
+                    Reach out for collaborations or school inquiries.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
             {/* About */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>About</NavigationMenuTrigger>
@@ -120,68 +181,6 @@ export function Header() {
                   </ListItem>
                   <ListItem href="/impact#outreach" title="Outreach">
                     School visits, events, and workshops.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            {/* For Students */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>For Students</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-100 to-white p-6 no-underline outline-none focus:shadow-md"
-                        href="/programs"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">Explore All Programs</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Mentorships, research labs, and grants for high school students.
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/programs#lab-matching" title="Lab Matching">
-                    Get mentored by university researchers.
-                  </ListItem>
-                  <ListItem href="/programs#competitions" title="Competitions">
-                    Join national & global research competitions.
-                  </ListItem>
-                  <ListItem href="/programs#grants" title="Grants & Startups">
-                    Apply for funding to launch your idea.
-                  </ListItem>
-                  <ListItem href="/scholarships" title="Scholarships">
-                    View all scholarship opportunities.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            {/* For Partners */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>For Partners</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-yellow-100 to-white p-6 no-underline outline-none focus:shadow-md"
-                        href="/partners"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">Partner With Us</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Work with us to support student innovation and equity.
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/partners#opportunities" title="Opportunities">
-                    Sponsor, co-host, or mentor a program.
-                  </ListItem>
-                  <ListItem href="/contact" title="Contact Us">
-                    Reach out for collaborations or school inquiries.
                   </ListItem>
                 </ul>
               </NavigationMenuContent>

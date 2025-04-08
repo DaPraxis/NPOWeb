@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter, Roboto_Mono } from 'next/font/google'
 import LenisLayout from './lenis-layout' // client component
 import { Header } from '@/Components/Sections/Header'
+import Footer from '@/Components/Sections/Footer'
 
 const inter = Inter({
   variable: '--font-sans',
@@ -106,6 +107,7 @@ export default function RootLayout({
         <LenisLayout>
           <Header/>
           {children}
+          <Footer/>
         </LenisLayout>
       </body>
     </html>

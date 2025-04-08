@@ -42,20 +42,32 @@ export default function Home() {
   const [minDelayPassed2, setMinDelayPassed2] = useState(false);
 
   useEffect(() => {
-  const timer = setTimeout(() => {
-    setMinDelayPassed(true)
-  }, 3000)
-
-  return () => clearTimeout(timer)
-}, [])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMinDelayPassed2(true)
-    }, 2500)
-
-    return () => clearTimeout(timer)
-  }, [])
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    const navType = navEntry ? navEntry.type : performance.navigation.type;
+  
+    const hasPlayed = sessionStorage.getItem("hasPlayedLoading");
+  
+    const isRefresh = navType === "reload";
+    const isFirstLoad = !hasPlayed;
+  
+    if (isFirstLoad || isRefresh) {
+      // ✅ Show animation
+      sessionStorage.setItem("hasPlayedLoading", "true");
+  
+      const delay1 = setTimeout(() => setMinDelayPassed(true), 3000);
+      const delay2 = setTimeout(() => setMinDelayPassed2(true), 2500);
+  
+      return () => {
+        clearTimeout(delay1);
+        clearTimeout(delay2);
+      };
+    } else {
+      // ❌ Skip animation
+      setMinDelayPassed(true);
+      setMinDelayPassed2(true);
+      setLanyardLoaded(true);
+    }
+  }, []);    
 
   useScroll(({ scroll }) => {
     setHasScrolled(scroll > 10)
@@ -417,7 +429,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="min-h-screen bg-gray-50 py-24 px-6 md:px-20">
+      {/* <section className="min-h-screen bg-gray-50 py-24 px-6 md:px-20">
         <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">News & Impact</h2>
         <div className="space-y-8">
           {[
@@ -444,9 +456,9 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className="min-h-screen bg-white py-24 px-6 md:px-20">
+      {/* <section className="min-h-screen bg-white py-24 px-6 md:px-20">
         <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">Scholarships & Awards</h2>
         <div className="grid md:grid-cols-2 gap-10">
           {[
@@ -513,7 +525,7 @@ export default function Home() {
             Become a Partner
           </button>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
