@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
+import { Avatar} from 'antd'
 
 export default function BounceCardsWithText({
   className = '',
@@ -113,12 +114,16 @@ export default function BounceCardsWithText({
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
         >
-          <p className="italic">“{item.quote}”</p>
-          <div className="mt-4 font-semibold">
-            <div className='text-blue-800 mt-auto'>{item.name}</div> 
-            <div className='text-gray-600'>{item.grade}</div>
+          <p className="italic mb-4">“{item.quote}”</p>
+        
+          <div className="flex items-center gap-3 mt-auto">
+            <Avatar src={item.image} size={48} />
+            <div className="font-semibold">
+              <div className="text-blue-800">{item.name}</div>
+              <div className="text-gray-600 text-sm">{item.grade}</div>
+            </div>
           </div>
-        </div>
+        </div>      
       ))}
     </div>
   );

@@ -21,6 +21,7 @@ import { NavigationMenuDemo } from '@/Components/Navigation/NavigationBar'
 import BounceCardsWithText from '@/Components/Card/BouncingCardWithText'
 import TumblingTextAnimation from '@/Components/Animation/TumblingText'
 import Tumbling3DText from '@/Components/Animation/Tumbling3DText'
+import {Popover, QRCode } from 'antd';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -153,29 +154,34 @@ export default function Home() {
 
   const testimonials = [
     {
-      quote: "I never imagined working with university researchers in high school.",
-      name: "Leila Zhang",
+      quote: "I never imagined working with UofT researchers!",
+      name: "Leila Z.",
       grade: "Grade 11, Toronto",
+      image: "/assets/students/Leila.jpg"
     },
     {
-      quote: "My project on air quality just won an award thanks to mentorship!",
-      name: "Raymond W.",
-      grade: "Grade 12, Vancouver",
+      quote: "My project on adolescent mental health just won an award thanks to mentorship!",
+      name: "Bill G.",
+      grade: "Grade 9, Calgary",
+      image: "/assets/students/Bill.jpg"
     },
     {
-      quote: "As a girl in STEM, I felt supported building a VR empathy simulator.",
+      quote: "As a girl in STEM, I felt supported building a VR meditation simulator.",
       name: "Sofia A.",
       grade: "Grade 10, Waterloo",
+      image: "/assets/students/Sofia.jpg"
     },
     {
       quote: "FutureEra helped me write my first research proposal and win funding.",
       name: "Daniel K.",
       grade: "Grade 11, Ottawa",
+      image: "/assets/students/Daniel.jpg"
     },
     {
       quote: "This changed the way I think about data science and ethics.",
       name: "Fatima S.",
       grade: "Grade 12, Mississauga",
+      image: "/assets/students/Fitama.jpg"
     },
   ];
 
@@ -223,7 +229,23 @@ export default function Home() {
         <div className="flex flex-wrap gap-4"
           style={{ zIndex: showLoading ? 60: 0 }}
         >
-          <Button variant="outline">Join Our Discord</Button>
+          <Popover content={
+            <QRCode 
+              value="https://discord.gg/JWEyEcuP" 
+              bordered={false} 
+              errorLevel="M"
+              icon="/assets/logo SQ.png"
+              />}
+            trigger="focus"
+            placement="bottom"
+          >
+            <a href="https://discord.gg/JWEyEcuP"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline">Join Our Community!</Button>
+            </a>
+          </Popover>
         </div>
       </section>
 
@@ -304,10 +326,11 @@ export default function Home() {
                   </div>
             </div>
           </div>
-
-          <button className="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition">
-            Read our Story
-          </button>
+          <a href="/about">
+            <button className="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition">
+              Read our Story
+            </button>
+          </a>
         </div>
 
         {/* Image Side */}

@@ -26,7 +26,7 @@ export default function StudentsPage() {
             Discover opportunities to join ongoing research, compete in STEM challenges, apply for grants, and collaborate with university labs.
           </p>
         </div>
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('/assets/student-bg.jpg')] bg-cover bg-center" />
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('/assets/barrier-free.jpg')] bg-cover bg-center" />
       </section>
 
       {/* Highlight Band
