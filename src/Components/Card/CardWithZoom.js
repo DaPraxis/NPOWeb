@@ -48,9 +48,10 @@ export const CardWithZoom = ({ number, text, detail, image, className = '', inve
   >
     <p className="text-4xl font-bold mb-2">{number}</p>
     <p className="text-xl">{text}</p>
-    <div className={inverted? "mt-4 text-sm text-black":"mt-4 text-sm text-gray-300"}>
+    <div className={inverted? "mt-4 text-m text-black":"mt-4 text-sm text-gray-300"}>
+    {detail}
+
     {image && <img src={image} alt="" className="w-full mt-3 rounded mb-2" />}
-        {detail}
     </div>
   </div>
   var blanks = null

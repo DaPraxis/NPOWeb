@@ -382,7 +382,7 @@ export default function Home() {
             <CardWithZoom
               number="🔬"
               text="Girls in STEM"
-              detail="A mentorship + lab matching program supporting girls in scientific research. Weekly sessions + final project presentation."
+              detail="A mentorship + lab matching program supporting girls in scientific research."
               image="/assets/girlSTEM.png"
               inverted
             />
@@ -390,13 +390,13 @@ export default function Home() {
               number="🌍"
               text="Equity in Innovation"
               detail="Explore AI, data justice, and open government datasets to build research projects with social impact."
-              image="/assets/equity-data.jpg"
+              image="/assets/justice.jpg"
               inverted
             />
             <CardWithZoom
               number="🧠"
               text="Research Without Barriers"
-              detail="Inclusive research pathways for all students. Laptops provided. 1:1 coaching for underserved communities."
+              detail="Inclusive research pathways for all students. 1:1 coaching for underserved communities."
               image="/assets/barrier-free.jpg"
               inverted
             />
