@@ -179,7 +179,7 @@ export default function Home() {
     },
     {
       quote: "This changed the way I think about data science and ethics.",
-      name: "Fatima S.",
+      name: "Fatim S.",
       grade: "Grade 12, Mississauga",
       image: "/assets/students/Fitama.jpg"
     },

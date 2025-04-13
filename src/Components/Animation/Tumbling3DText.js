@@ -116,7 +116,7 @@ export default function Tumbling3DText({
   spacing = 0.1,
   tumbleAmount = Math.PI / 4,
 }) {
-  const lines = ['<FutureEra', 'Research>.'];
+  const lines = ['FutureEra Research'];
   const [widthMap, setWidthMap] = useState({});
 
   const handleCharWidth = (key, width) => {
@@ -146,43 +146,45 @@ export default function Tumbling3DText({
 
               const isStatic = ['<', '>', '.'].includes(char);
 
-              return (
-                <group key={key} position={[xOffset, 0, 0]}>
-                  {isStatic ? (
-                    <Text3D
-                      font="/fonts/milligram_medium.typeface.json"
-                      size={1}
-                      height={0.2}
-                      curveSegments={12}
-                      bevelEnabled
-                      bevelSize={0.01}
-                      bevelThickness={0.01}
-                      bevelSegments={1}
-                      material={new THREE.MeshStandardMaterial({ color: 'black', roughness: 0.5, metalness: 0.3 })}
-                      ref={ref => {
-                        if (ref && ref.geometry) {
-                          ref.geometry.computeBoundingBox();
-                          const box = ref.geometry.boundingBox;
-                          const width = box.max.x - box.min.x;
-                          handleCharWidth(key, width);
-                        }
-                      }}
-                    >
-                      {char}
-                    </Text3D>
-                  ) : (
-                    <Letter
-                      char={char}
-                      index={i}
-                      font="/fonts/milligram_medium.typeface.json"
-                      xOffset={0}
-                      tumbleAmount={tumbleAmount}
-                      lineLength={line.length}
-                      onCharWidth={(i, w) => handleCharWidth(key, w)}
-                    />
-                  )}
-                </group>
-              );
+              if (char!=' '){
+                return (
+                  <group key={key} position={[xOffset, 0, 0]}>
+                    {isStatic ? (
+                      <Text3D
+                        font="/fonts/milligram_medium.typeface.json"
+                        size={1}
+                        height={0.2}
+                        curveSegments={12}
+                        bevelEnabled
+                        bevelSize={0.01}
+                        bevelThickness={0.01}
+                        bevelSegments={1}
+                        material={new THREE.MeshStandardMaterial({ color: 'black', roughness: 0.5, metalness: 0.3 })}
+                        ref={ref => {
+                          if (ref && ref.geometry) {
+                            ref.geometry.computeBoundingBox();
+                            const box = ref.geometry.boundingBox;
+                            const width = box.max.x - box.min.x;
+                            handleCharWidth(key, width);
+                          }
+                        }}
+                      >
+                        {char}
+                      </Text3D>
+                    ) : (
+                      <Letter
+                        char={char}
+                        index={i}
+                        font="/fonts/milligram_medium.typeface.json"
+                        xOffset={0}
+                        tumbleAmount={tumbleAmount}
+                        lineLength={line.length}
+                        onCharWidth={(i, w) => handleCharWidth(key, w)}
+                      />
+                    )}
+                  </group>
+                )
+              };
             })}
           </group>
         );
