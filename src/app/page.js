@@ -161,8 +161,8 @@ export default function Home() {
     },
     {
       quote: "My project on adolescent mental health just won an award thanks to mentorship!",
-      name: "Bill G.",
-      grade: "Grade 9, Calgary",
+      name: "Bill L.",
+      grade: "Grade 12, Vancouver",
       image: "/assets/students/Bill.jpg"
     },
     {

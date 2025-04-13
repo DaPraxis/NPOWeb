@@ -117,7 +117,7 @@ export default function BounceCardsWithText({
           <p className="italic mb-4">“{item.quote}”</p>
         
           <div className="flex items-center gap-3 mt-auto">
-            <Avatar src={item.image} size={48} />
+            {/* <Avatar src={item.image} size={48} /> */}
             <div className="font-semibold">
               <div className="text-blue-800">{item.name}</div>
               <div className="text-gray-600 text-sm">{item.grade}</div>
