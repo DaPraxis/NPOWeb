@@ -118,41 +118,14 @@ export function Header() {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/partners#opportunities" title="Opportunities">
+                  <ListItem href="/partners/opportunities" title="Opportunities">
                     Sponsor, co-host, or mentor a program.
                   </ListItem>
-                  <ListItem href="/contact" title="Contact Us">
+                  <ListItem href="/partners/support" title="Support Us">
+                    Be Part of the Impact.
+                  </ListItem>
+                  <ListItem href="/partners/contact" title="Contact Us">
                     Reach out for collaborations or school inquiries.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            {/* About */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>About</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-100 to-white p-6 no-underline outline-none focus:shadow-md"
-                        href="/about"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">Our Story</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Discover who we are, what we do, and why it matters.
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/about#our-works" title="Our Works">
-                    The core programs and initiatives we run.
-                  </ListItem>
-                  <ListItem href="/about#our-people" title="Our People">
-                    Meet our team and mentors.
-                  </ListItem>
-                  <ListItem href="/about#supporters" title="Supporters">
-                    Community and institutional partners.
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
@@ -181,6 +154,40 @@ export function Header() {
                   </ListItem>
                   <ListItem href="/impact#outreach" title="Outreach">
                     School visits, events, and workshops.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            {/* About */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Get Involved</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-4">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-100 to-white p-6 no-underline outline-none focus:shadow-md"
+                        href="/careers"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium">Join Us!</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                        Shine bright. Make change. Start here.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/careers/instructors" title="Become an Instructor">
+                    Teach. Inspire. Grow.
+                  </ListItem>
+                  <ListItem href="/careers/outreach" title="Outreach">
+                    Careers with purpose, impact, and heart.
+                  </ListItem>
+                  <ListItem href="/careers/network" title="Network">
+                    Stay connected with our community.
+                  </ListItem>
+                  <ListItem href="/careers/volunteer" title="Volunteers">
+                    Start small. Spark change.
                   </ListItem>
                 </ul>
               </NavigationMenuContent>

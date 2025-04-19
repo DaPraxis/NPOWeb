@@ -231,15 +231,15 @@ export default function Home() {
         >
           <Popover content={
             <QRCode 
-              value="https://discord.gg/JWEyEcuP" 
+              value="https://discord.gg/6m48TqXE" 
               bordered={false} 
               errorLevel="M"
-              icon="/assets/logo SQ.png"
+              icon="/assets/fav.png"
               />}
             trigger="focus"
             placement="bottom"
           >
-            <a href="https://discord.gg/JWEyEcuP"
+            <a href="https://discord.gg/6m48TqXE"
               target="_blank"
               rel="noopener noreferrer"
             >

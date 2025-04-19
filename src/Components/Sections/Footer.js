@@ -23,9 +23,14 @@ export default function Footer() {
         <div>
           <h4 className="text-xl font-semibold mb-4">Join Our Community</h4>
           <p className="text-sm mb-4">Stay in the loop with upcoming opportunities and events.</p>
-          <button className="bg-white text-blue-900 font-semibold px-4 py-2 rounded-full hover:bg-gray-100 transition">
-            Join Our Discord
-          </button>
+          <a href="https://discord.gg/6m48TqXE"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-white text-blue-900 font-semibold px-4 py-2 rounded-full hover:bg-gray-100 transition">
+                Join Our Discord
+              </button>
+            </a>
         </div>
       </div>
       <div className="mt-10 border-t border-white/20 pt-4 text-center text-xs text-white/80">
