@@ -3,16 +3,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Dock from '@/blocks/Components/Dock/Dock'
 import {FireOutlined, GiftOutlined, MailOutlined} from '@ant-design/icons'
 
 gsap.registerPlugin(ScrollTrigger);
-const items = [
-  { icon: <span className="text-white"><FireOutlined /></span>, label: 'Explore Opportunities', onClick: () => alert('Explore!') },
-  { icon: <span className="text-white"><GiftOutlined /></span>, label: 'Support Us', onClick: () => alert('Support!') },
-  { icon: <span className="text-white"><MailOutlined /></span>, label: 'Get in Touch', onClick: () => alert('Contact!') },
-];
-
 
 const partnerCards = [
   {
@@ -80,7 +73,7 @@ export default function PartnersPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 pt-36" id="partner-wrapper">
-      <div className="flex flex-col md:flex-row gap-2 items-start">
+      <div className="flex flex-col md:flex-row gap-10 items-start">
         {/* Left: Scrollable Cards */}
         <div className="md:w-[55%] w-full space-y-0" id="partner-content">
           {partnerCards.map((item, idx) => (
@@ -107,7 +100,7 @@ export default function PartnersPage() {
         </div>
 
         {/* Right: Scroll-Pinned Heading & Buttons */}
-        <div className="md:w-[45%] w-full" ref={pinRef}>
+        <div className="md:w-[40%] w-full" ref={pinRef}>
           <div className="p-6">
             <h1 className="text-4xl font-bold mb-8 pt-16">Partner with FutureEra</h1>
             <p className="text-lg text-muted-foreground mb-12">
@@ -120,27 +113,21 @@ export default function PartnersPage() {
                 href="/partners/opportunities"
                 className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
-                Explore Opportunities
+                <FireOutlined /> Explore Opportunities
               </a>
               <a
                 href="/partners/support"
                 className="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
               >
-                Support Us
+                <GiftOutlined /> Support Us
               </a>
               <a
                 href="/partners/contact"
                 className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100"
               >
-                Get in Touch
+                <MailOutlined /> Get in Touch
               </a>
             </div>
-            {/* <Dock 
-              items={items}
-              panelHeight={68}
-              baseItemSize={50}
-              magnification={70}
-            /> */}
           </div>
         </div>
       </div>

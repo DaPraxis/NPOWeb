@@ -2,7 +2,7 @@ export default function CareersPage() {
     return (
       <div className="bg-white text-gray-800">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-blue-50 to-white py-16 text-center">
+        <section className="bg-gradient-to-b from-blue-50 to-white py-46 text-center">
           <h1 className="text-4xl font-bold mb-4">Teach. Inspire. Grow.</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             FutureEra instructors and volunteers empower youth through meaningful, equitable programs across Canada.

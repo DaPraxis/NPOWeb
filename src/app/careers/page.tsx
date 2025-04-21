@@ -4,7 +4,7 @@ export default function CareersLandingPage() {
       {/* Hero Section */}
       <section
         className="relative h-[350px] bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: "url('/your-careers-banner.jpg')" }}
+        style={{ backgroundImage: "url('/assets/career/your-careers-banner.png')" }}
       >
         <div className="absolute inset-0 bg-black/40" />
         <h1 className="z-10 text-4xl font-bold">Careers & Volunteer Opportunities</h1>
@@ -68,7 +68,7 @@ export default function CareersLandingPage() {
           No matter your background or experience, if you're passionate about youth empowerment, education, and equity — we want to work with you.
         </p>
         <a
-          href="/contact#careers"
+          href="/careers/contact"
           className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
         >
           Connect with Our Team

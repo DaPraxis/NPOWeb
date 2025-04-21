@@ -4,16 +4,16 @@ import dynamic from 'next/dynamic';
 import Sketch from 'react-p5';
 import p5 from 'p5';
 
-let colors = ['#e92f2f', '#ffd91c', '#067bc2', '#17bebb', '#ffffff'];
+let colors = ['#5EE9B5', '#ffffff', '#8EC5FF', '#FFDF20', '#F06543'];
 let motions = [];
 let motionClasses = [];
 let rects = [];
 let sceneTimer = 0;
 let resetTime = 60 * 6;
 
-export default function MotionGrid() {
+export default function MotionGrid({canvasSize=600, gridCountW=24, gridCountH=24}) {
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(600, 600).parent(canvasParentRef);
+    p5.createCanvas(canvasSize, canvasSize).parent(canvasParentRef);
     p5.rectMode(p5.CENTER);
     INIT(p5);
   };
@@ -36,7 +36,7 @@ export default function MotionGrid() {
     motions = [];
     rects = [];
     motionClasses = [Motion01, Motion02, Motion03, Motion04, Motion05];
-    tiling(p5);
+    tiling(p5, gridCountW, gridCountH);
     for (let i = 0; i < rects.length; i++) {
       let MotionClass = p5.random(motionClasses);
       let r = rects[i];
@@ -47,38 +47,47 @@ export default function MotionGrid() {
     }
   };
 
-  const tiling = (p5) => {
-    let offset = p5.width * 0.1;
-    let gridCountW = 24;
-    let gridCountH = 24;
-    let gridW = (p5.width - offset * 2) / gridCountW;
-    let gridH = (p5.height - offset * 2) / gridCountH;
+  const tiling = (p5, gridCountW, gridCountH) => {
+    const offset = p5.width * 0.1;
+    const gridW = (p5.width - offset * 2) / gridCountW;
+    const gridH = (p5.height - offset * 2) / gridCountH;
     let emp = gridCountW * gridCountH;
     let grids = Array.from({ length: gridCountW }, () => Array(gridCountH).fill(false));
-
+  
     while (emp > 0) {
-      let w = p5.int(p5.random(1, 9));
-      let h = w;
-      let x = p5.int(p5.random(gridCountW - w + 1));
-      let y = p5.int(p5.random(gridCountH - h + 1));
+      const w = p5.int(p5.random(1, 9));
+      const h = w;
+      const x = p5.int(p5.random(gridCountW - w + 1));
+      const y = p5.int(p5.random(gridCountH - h + 1));
       let lap = true;
-      for (let j = 0; j < h; j++)
-        for (let i = 0; i < w; i++)
-          if (grids[x + i][y + j]) lap = false;
-
+  
+      for (let j = 0; j < h; j++) {
+        for (let i = 0; i < w; i++) {
+          if (grids[x + i][y + j]) {
+            lap = false;
+            break;
+          }
+        }
+      }
+  
       if (lap) {
-        for (let j = 0; j < h; j++)
-          for (let i = 0; i < w; i++) grids[x + i][y + j] = true;
-
-        let xx = offset + x * gridW;
-        let yy = offset + y * gridH;
-        let ww = w * gridW;
-        let hh = h * gridH;
+        for (let j = 0; j < h; j++) {
+          for (let i = 0; i < w; i++) {
+            grids[x + i][y + j] = true;
+          }
+        }
+  
+        const xx = offset + x * gridW;
+        const yy = offset + y * gridH;
+        const ww = w * gridW;
+        const hh = h * gridH;
+  
         rects.push({ x: xx + ww / 2, y: yy + hh / 2, w: ww, h: hh, c: w });
         emp -= w * h;
       }
     }
   };
+  
 
   const easeInOutQuint = (x) =>
     x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;

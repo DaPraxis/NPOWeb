@@ -164,7 +164,7 @@ export function Header() {
               <NavigationMenuTrigger>Get Involved</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-4">
+                  <li className="row-span-5">
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-100 to-white p-6 no-underline outline-none focus:shadow-md"
@@ -188,6 +188,9 @@ export function Header() {
                   </ListItem>
                   <ListItem href="/careers/volunteer" title="Volunteers">
                     Start small. Spark change.
+                  </ListItem>
+                  <ListItem href="/careers/contact" title="Connect with Us">
+                    Stay in tune.
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
