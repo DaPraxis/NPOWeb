@@ -1,6 +1,6 @@
 export default function PartnerOpportunities() {
     return (
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="max-w-3xl mx-auto px-6 pt-26">
         <h1 className="text-4xl font-bold mb-6">Collaborate on High-Impact Opportunities</h1>
         <p className="text-lg text-muted-foreground mb-10">
           From hosting research projects to mentoring students, there are countless ways to contribute to real-world

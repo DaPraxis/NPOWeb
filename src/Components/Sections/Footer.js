@@ -2,7 +2,7 @@
 "use client"
 export default function Footer() {
   return (
-    <footer className="bg-blue-900 text-white px-6 py-10 mt-10">
+    <footer id="footer" className="bg-blue-900 text-white px-6 py-10 mt-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <h4 className="text-xl font-semibold mb-4">About FutureEra</h4>
