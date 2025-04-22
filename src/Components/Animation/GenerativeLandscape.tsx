@@ -21,6 +21,7 @@ const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 const NUM_LAYERS = isMobile ? 4 : 6;
 
 let layerGraphics: p5Types.Graphics[] = [];
+let preRendered = false;
 
 export default function GenerativeLandscape() {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -29,12 +30,15 @@ export default function GenerativeLandscape() {
     p5.colorMode(p5.HSB, 360, 100, 100, 100);
     initializeColorPalettes();
     regenerateLandscape(p5);
-    preRenderLayers(p5);
     p5.noSmooth(); // in setup
   };
 
   const draw = (p5: p5Types) => {
     if (document.hidden) return; // skip drawing when tab is inactive
+    if (!preRendered) {
+        preRenderLayers(p5);
+        preRendered = true;
+      }
 
     p5.background(0, 0, 0, 100);
     baseHue += colorShiftSpeed * p5.deltaTime;
@@ -76,7 +80,7 @@ export default function GenerativeLandscape() {
       const yBase = p5.height * (1 - LAYER_HEIGHT_FACTOR * (i / (NUM_LAYERS - 1)));
       const mouseFactorY = 0; // optional: lock or vary if needed
   
-      for (let x = 0; x <= p5.width; x += 4) {
+      for (let x = 0; x <= p5.width; x += 10) {
         const n = g.noise(x * NOISE_SCALE + i * 100, i * 100 * NOISE_DETAIL);
         const yOffset = p5.map(n, 0, 1, -160, 160);
         const y = yBase + yOffset + mouseFactorY * (i / NUM_LAYERS);
