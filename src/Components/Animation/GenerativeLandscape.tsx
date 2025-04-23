@@ -27,7 +27,7 @@ export default function GenerativeLandscape() {
 
   useEffect(() => {
     const initWhenIdle = () => {
-      requestIdleCallback?.(() => setReady(true)) || setTimeout(() => setReady(true), 300);
+      requestIdleCallback?.(() => setReady(true)) || setTimeout(() => setReady(true), 100);
     };
 
     if ('IntersectionObserver' in window && containerRef.current) {
@@ -89,7 +89,7 @@ export default function GenerativeLandscape() {
       const points: { x: number; y: number }[] = [];
       const yBase = p5.height * (1 - LAYER_HEIGHT_FACTOR * (i / (NUM_LAYERS - 1)));
 
-      for (let x = 0; x <= p5.width; x += 12) { // fewer points
+      for (let x = 0; x <= p5.width; x += 64) { // fewer points
         const n = p5.noise(x * NOISE_SCALE + i * 100, i * 100 * NOISE_DETAIL);
         const yOffset = p5.map(n, 0, 1, -160, 160);
         points.push({ x, y: yBase + yOffset });

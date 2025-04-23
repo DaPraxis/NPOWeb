@@ -52,7 +52,7 @@ export default function SupportUsPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 px-6 text-center max-w-4xl mx-auto sm:text-left">
+      <section className="py-40 px-6 text-center max-w-4xl mx-auto sm:text-left">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">
           Your Support Powers Bold Futures
         </h2>
