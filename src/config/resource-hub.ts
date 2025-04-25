@@ -1,44 +1,4 @@
 export const RESOURCES = {
-    projects: {
-      title: "Student Projects",
-      items: [
-        {
-          title: "AAC App for ASD Students",
-          description: "Using AI to support communication for children with Autism Spectrum Disorder and others who need speech aid. Actively recruiting UI/UX and NLP model contributors.",
-          image: "/assets/projects/aac.png",
-          link: "/apply",
-          linkLabel: "Join Project",
-          status: "ongoing",
-          participants: 6
-        },
-        {
-          title: "Adolescent Suicide Risk Analysis",
-          description: "A dashboard project using national open data to identify and visualize suicide risk factors in youth. Finalist of the Big Data Competition 2025.",
-          image: "/assets/projects/suicide.jpg",
-          link: "/projects/suicide-dashboard",
-          linkLabel: "Join Project",
-          status: "ongoing",
-          participants: 5
-        },
-        {
-          title: "VR Social Anxiety App",
-          description: "Built in 2024 with 4 high school students and 1 mentor from UofT. Now open-sourced for new participants.",
-          image: "/assets/projects/vr.jpg",
-          status: "ongoing",
-          link: "/projects/vr",
-          participants: 4
-        },
-        {
-          title: "Autism Behavior Classifier",
-          description: "Finalist at AI4Youth Canada. Classifies social response patterns. Seeking collaborators for Phase II.",
-          status: "past",
-          image: "/assets/projects/asd.jpg",
-          participants: 3,
-          date: "2024-12-01"
-        }
-      ]
-    },
-  
     competitions: {
       title: "Competitions",
       items: [
@@ -122,6 +82,47 @@ export const RESOURCES = {
           date: "2025-08-14"
         }
       ]
-    }
+    },
+
+    projects: {
+      title: "Student Projects",
+      items: [
+        {
+          title: "AAC App for ASD Students",
+          description: "Using AI to support communication for children with Autism Spectrum Disorder and others who need speech aid. Actively recruiting UI/UX and NLP model contributors.",
+          image: "/assets/projects/aac.png",
+          link: "/apply",
+          linkLabel: "Join Project",
+          status: "ongoing",
+          participants: 6
+        },
+        {
+          title: "Adolescent Suicide Risk Analysis",
+          description: "A dashboard project using national open data to identify and visualize suicide risk factors in youth. Finalist of the Big Data Competition 2025.",
+          image: "/assets/projects/suicide.jpg",
+          link: "/projects/suicide-dashboard",
+          linkLabel: "Join Project",
+          status: "ongoing",
+          participants: 5
+        },
+        {
+          title: "VR Social Anxiety App",
+          description: "Built in 2024 with 4 high school students and 1 mentor from UofT. Now open-sourced for new participants.",
+          image: "/assets/projects/vr.jpg",
+          status: "ongoing",
+          link: "/projects/vr",
+          participants: 4
+        },
+        {
+          title: "Autism Behavior Classifier",
+          description: "Finalist at AI4Youth Canada. Classifies social response patterns. Seeking collaborators for Phase II.",
+          status: "past",
+          image: "/assets/projects/asd.jpg",
+          participants: 3,
+          date: "2024-12-01"
+        }
+      ]
+    },
+  
   }
   

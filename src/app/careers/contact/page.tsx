@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 const SimplexBranches = dynamic(() => import('@/Components/Animation/SimpleBranches'), {
   ssr: false,
@@ -8,11 +9,20 @@ const SimplexBranches = dynamic(() => import('@/Components/Animation/SimpleBranc
 // import SimplexBranches from '@/Components/Animation/SimpleBranches';
 
 export default function ContactStudentsPage() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShow(true), 10); // short delay for smooth fade-in
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="max-w-7xl mx-auto px-6 pt-40 pb-10">
       <div className="flex flex-col md:flex-row gap-8 h-full">
         {/* Left: MotionGrid (40%) */}
-        <div className="md:w-[40%] w-full">
+        <div 
+        className={`md:w-[40%] w-full transition-opacity duration-2000 ease-out 
+        ${show ? 'opacity-100' : 'opacity-0'}
+        `}>
           <SimplexBranches canvasSize={400}/>
         </div>
 

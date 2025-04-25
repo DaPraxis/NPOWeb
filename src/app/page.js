@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import dynamic from 'next/dynamic'
 import { Card } from '../Components/Card/Card'
@@ -8,20 +8,17 @@ import { useRect } from '@studio-freight/hamo'
 import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../Components/lib/store'
 import { useWindowSize } from 'react-use'
-import { useScroll} from '../Components/hooks/use-scroll'
-import {Parallax} from '../Components/Parallax/Parallax'
+import { useScroll } from '../Components/hooks/use-scroll'
+import { Parallax } from '../Components/Parallax/Parallax'
 import { Link } from '../Components/Link/Link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '../Components/ui/button'
 import DecryptedText from '../blocks/TextAnimations/DecryptedText/DecryptedText'
-import RotatingText from '../blocks/TextAnimations/RotatingText/RotatingText'
 import CountUp from '../blocks/TextAnimations/CountUp/CountUp'
-import { NavigationMenuDemo } from '@/Components/Navigation/NavigationBar'
 import BounceCardsWithText from '@/Components/Card/BouncingCardWithText'
-import TumblingTextAnimation from '@/Components/Animation/TumblingText'
 import Tumbling3DText from '@/Components/Animation/Tumbling3DText'
-import {Popover, QRCode } from 'antd';
+import { Popover, QRCode } from 'antd'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,37 +35,29 @@ export default function Home() {
   const addThreshold = useStore(({ addThreshold }) => addThreshold)
   const { height: windowHeight } = useWindowSize()
   const [whyRectRef, whyRect] = useRect()
-  const [lanyardLoaded, setLanyardLoaded] = useState(false);
-  const [minDelayPassed, setMinDelayPassed] = useState(false);
-  const [minDelayPassed2, setMinDelayPassed2] = useState(false);
+  const [lanyardLoaded, setLanyardLoaded] = useState(false)
+  const [minDelayPassed, setMinDelayPassed] = useState(false)
+  const [minDelayPassed2, setMinDelayPassed2] = useState(false)
 
   useEffect(() => {
-    const navEntry = performance.getEntriesByType("navigation")[0];
-    const navType = navEntry ? navEntry.type : performance.navigation.type;
-  
-    const hasPlayed = sessionStorage.getItem("hasPlayedLoading");
-  
-    const isRefresh = navType === "reload";
-    const isFirstLoad = !hasPlayed;
-  
-    if (isFirstLoad || isRefresh) {
-      // ✅ Show animation
-      sessionStorage.setItem("hasPlayedLoading", "true");
-  
-      const delay1 = setTimeout(() => setMinDelayPassed(true), 3000);
-      const delay2 = setTimeout(() => setMinDelayPassed2(true), 2500);
-  
+    const navEntry = performance.getEntriesByType("navigation")[0]
+    const navType = navEntry ? navEntry.type : performance.navigation.type
+    const hasPlayed = sessionStorage.getItem("hasPlayedLoading")
+
+    if (!hasPlayed || navType === "reload") {
+      sessionStorage.setItem("hasPlayedLoading", "true")
+      const delay1 = setTimeout(() => setMinDelayPassed(true), 3000)
+      const delay2 = setTimeout(() => setMinDelayPassed2(true), 2500)
       return () => {
-        clearTimeout(delay1);
-        clearTimeout(delay2);
-      };
+        clearTimeout(delay1)
+        clearTimeout(delay2)
+      }
     } else {
-      // ❌ Skip animation
-      setMinDelayPassed(true);
-      setMinDelayPassed2(true);
-      setLanyardLoaded(true);
+      setMinDelayPassed(true)
+      setMinDelayPassed2(true)
+      setLanyardLoaded(true)
     }
-  }, []);    
+  }, [])
 
   useScroll(({ scroll }) => {
     setHasScrolled(scroll > 10)
@@ -76,21 +65,14 @@ export default function Home() {
 
     const start = zoomWrapperRect.top + windowHeight * 0.5
     const end = zoomWrapperRect.top + zoomWrapperRect.height - windowHeight
-
     const progress = clamp(0, mapRange(start, end, scroll, 0, 1), 1)
     const center = 0.6
     const progress1 = clamp(0, mapRange(0, center, progress, 0, 1), 1)
     const progress2 = clamp(0, mapRange(center - 0.055, 1, progress, 0, 1), 1)
-    setTheme(progress2 === 1 ? 'light' : 'dark')
 
-    zoomRef.current.style.setProperty('--progress1', progress1)
-    zoomRef.current.style.setProperty('--progress2', progress2)
-
-    if (progress === 1) {
-      zoomRef.current.style.setProperty('background-color', 'currentColor')
-    } else {
-      zoomRef.current.style.removeProperty('background-color')
-    }
+    zoomRef.current?.style.setProperty('--progress1', progress1)
+    zoomRef.current?.style.setProperty('--progress2', progress2)
+    zoomRef.current?.style.setProperty('background-color', progress === 1 ? 'currentColor' : '')
   })
 
   useEffect(() => {
@@ -100,21 +82,14 @@ export default function Home() {
   useEffect(() => {
     const top = whyRect.top - windowHeight / 2
     addThreshold({ id: 'why-start', value: top })
-    addThreshold({
-      id: 'why-end',
-      value: top + whyRect.height,
-    })
+    addThreshold({ id: 'why-end', value: top + whyRect.height })
   }, [whyRect])
-
 
   useEffect(() => {
     const top = cardsRect.top - windowHeight / 2
     addThreshold({ id: 'cards-start', value: top })
     addThreshold({ id: 'cards-end', value: top + cardsRect.height })
-    addThreshold({
-      id: 'red-end',
-      value: top + cardsRect.height + windowHeight,
-    })
+    addThreshold({ id: 'red-end', value: top + cardsRect.height + windowHeight })
   }, [cardsRect])
 
   const lenis = useStore(({ lenis }) => lenis)
@@ -124,17 +99,13 @@ export default function Home() {
     addThreshold({ id: 'end', value: top })
   }, [lenis?.limit])
 
-  useScroll((e) => {
-    console.log(e)
-  })
-
   useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth < 768) return
     const pinTarget = document.querySelector('.sticky-title')
     const content = document.getElementById('why-content')
     const wrapper = document.getElementById('why-wrapper')
-  
     if (!pinTarget || !content || !wrapper) return
-  
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: wrapper,
@@ -146,10 +117,9 @@ export default function Home() {
         invalidateOnRefresh: true,
       })
     })
-  
     return () => ctx.revert()
   }, [])
-  
+
   const showLoading = (lanyardLoaded && minDelayPassed)
 
   const testimonials = [
@@ -183,7 +153,7 @@ export default function Home() {
       grade: "Grade 12, Mississauga",
       image: "/assets/students/Fitama.jpg"
     },
-  ];
+  ]
 
   const transformStyles = [
     "rotate(5deg) translate(-150px)",
@@ -191,153 +161,96 @@ export default function Home() {
     "rotate(-5deg)",
     "rotate(5deg) translate(70px)",
     "rotate(-5deg) translate(150px)",
-  ];
+  ]
 
   return (
     <div>
       {!showLoading && (
-        <div
-          className="fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center"
-        >
+        <div className="fixed inset-0 z-50 bg-[#FFFDFF] flex items-center justify-center">
           <Tumbling3DText spacing={0.05} tumbleAmount={Math.PI / 6} />
         </div>
       )}
-      {/* ✅ Fixed 3D canvas background */}
+
       <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
-        {minDelayPassed2? <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)}/>:<></>}
+        {minDelayPassed2 && (
+          <Lanyard position={[0, 0, 20]} gravity={[0, -30, 0]} onLoaded={() => setLanyardLoaded(true)} />
+        )}
       </div>
 
-      {/* {showLoading && <NavigationMenuDemo/>} */}
-
-      {/* ✅ Initial vertical scroll section */}
-      <section className="min-h-screen flex flex-col items-start justify-center text-left px-6 py-20 bg-gradient-to-br from-blue-100 to-white pl-15">
-        {/* <h1 className="text-5xl md:text-6xl font-bold mb-4">Your Research Journey, Your Way.</h1>
-         */}
-         {showLoading &&
-          <DecryptedText 
+      <section className="min-h-screen flex flex-col items-start justify-center text-left px-4 sm:px-16 py-20 bg-gradient-to-br from-blue-100 to-white">
+        {showLoading &&
+          <DecryptedText
             text='Your Research Journey, Your Way.'
             animateOn="view"
             speed={55}
             maxIterations={2}
             sequential={true}
-            parentClassName='text-5xl md:text-6xl font-bold mb-4'
+            parentClassName='text-3xl sm:text-5xl font-bold mb-4'
             useOriginalCharsOnly={true}
-            />}
-        <p className="text-xl md:text-2xl mb-8 max-w-2xl">
+          />}
+        <p className="text-lg sm:text-xl mb-8 max-w-2xl">
           Research Labs, Competitions, Grants or Startups — FutureEra helps you turn your ideas into impact.
         </p>
-        <div className="flex flex-wrap gap-4"
-          style={{ zIndex: showLoading ? 60: 0 }}
-        >
-          <Popover content={
-            <QRCode 
-              value="https://discord.gg/6m48TqXE" 
-              bordered={false} 
-              errorLevel="M"
-              icon="/assets/fav.png"
-              />}
-            trigger="focus"
-            placement="bottom"
-          >
-            <a href="https://discord.gg/6m48TqXE"
-              target="_blank"
-              rel="noopener noreferrer"
+        {showLoading &&
+          <div className="flex flex-wrap gap-4 z-[60]">
+            <Popover
+              content={
+                <QRCode
+                  value="https://discord.gg/6m48TqXE"
+                  bordered={false}
+                  errorLevel="M"
+                  icon="/assets/fav.png"
+                />
+              }
+              trigger="focus"
+              placement="bottom"
             >
-              <Button variant="outline">Join Our Community!</Button>
-            </a>
-          </Popover>
-        </div>
+              <a
+                href="https://discord.gg/6m48TqXE"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Join our Discord Community"
+              >
+                <Button variant="outline">Join Our Community!</Button>
+              </a>
+            </Popover>
+          </div>
+        }
       </section>
 
-      <section className="min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-16 bg-white">
-        {/* Text Content */}
+      <section className="min-h-screen flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 lg:px-20 py-16 bg-white">
         <div className="w-full md:w-1/2 z-10">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-blue-900 mb-6">
+          <h1 className="text-3xl sm:text-5xl font-bold leading-tight text-blue-900 mb-6">
             Unlocking youth potential through STEM research.
           </h1>
-          <p className="text-lg md:text-xl text-gray-800 mb-6 max-w-xl">
+          <p className="text-base sm:text-lg text-gray-800 mb-6 max-w-xl">
             FutureEra is a youth-driven nonprofit connecting high school students to world-class research labs, competitions, and startup support.
           </p>
-
-          {/* Metrics Grid */}
           <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm md:text-base text-gray-600 mb-8">
-            <div>
-              <span className="text-2xl font-bold text-blue-600">
-                <CountUp
-                  from={0}
-                  to={20}
-                  duration={0.5}
-                  separator=","
-                  direction="up"
-                  className="count-up-text"
-                />
-                +
-              </span>
-              <div className="text-sm md:text-base text-gray-600">
-                University Lab Partners
-              </div>
-            </div>
-            <div>
-              <span className="text-2xl font-bold text-blue-600">
-                <CountUp
-                  from={0}
-                  to={100}
-                  duration={0.5}
-                  separator=","
-                  direction="up"
-                  className="count-up-text"
-                />
-                +
-              </span>
-              <div className="text-sm md:text-base text-gray-600">
-                Mentored Research Projects
-              </div>
-            </div>
-            <div>
-              <span className="text-2xl font-bold text-blue-600">
-                  <CountUp
-                    from={0}
-                    to={10}
-                    duration={0.5}
-                    separator=","
-                    direction="up"
-                    className="count-up-text"
-                  />
-                  +
+            {[
+              { label: "University Lab Partners", value: 20 },
+              { label: "Mentored Research Projects", value: 100 },
+              { label: "National & Global Competitions", value: 10 },
+              { label: "Grants & Student Startups", value: 15 },
+            ].map(({ label, value }) => (
+              <div key={label}>
+                <span className="text-2xl font-bold text-blue-600">
+                  <CountUp from={0} to={value} duration={0.5} separator="," direction="up" />+
                 </span>
-                <div className="text-sm md:text-base text-gray-600">
-                  National & Global Competitions
-                </div>
-            </div>
-            <div>
-              <span className="text-2xl font-bold text-blue-600">
-                    <CountUp
-                      from={0}
-                      to={15}
-                      duration={0.5}
-                      separator=","
-                      direction="up"
-                      className="count-up-text"
-                    />
-                    +
-                  </span>
-                  <div className="text-sm md:text-base text-gray-600">
-                  Grants & Student Startups
-                  </div>
-            </div>
+                <div>{label}</div>
+              </div>
+            ))}
           </div>
-          <a href="/about">
+          <a href="/about" aria-label="Read our story">
             <button className="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition">
               Read our Story
             </button>
           </a>
         </div>
-
-        {/* Image Side */}
         <div className="w-full md:w-1/2 mt-12 md:mt-0">
           <img
             src="/assets/student1.jpg"
-            alt="FutureEra student"
+            alt="FutureEra student presenting project"
             className="w-full rounded-lg shadow-xl object-cover"
           />
         </div>
@@ -345,103 +258,65 @@ export default function Home() {
 
       <section className="min-h-screen flex flex-col md:flex-row items-center justify-between">
         <div className="grid grid-cols-12 gap-4 px-4 lg:px-24" id="why-wrapper">
-          {/* Sticky Title on the Left */}
-          <div
-            className="hidden lg:block col-span-4"
-            id="why-sticky"
-          >
-            <p className="text-[#4E7CD9] sticky-title text-4xl font-bold border-l-4 border-[#4E7CD9] pl-8 leading-tight mt-2 text-transform: uppercase">
-            Start Anywhere. Grow Everywhere.<br/>
-            <span className="text-black text-xl border-[#4E7CD9] pl-8 leading-tight mt-2 text-transform: capitalize ">Our programs are built to evolve with you. 
-              Whether you're starting with an idea, a project, or a competition — you can grow in any direction.</span>
+          <div className="col-span-12 lg:col-span-4 mb-8 lg:mb-0 text-center lg:text-left" id="why-sticky">
+            <p className="text-[#4E7CD9] sticky-title text-3xl sm:text-4xl font-bold border-l-4 border-[#4E7CD9] pl-4 lg:pl-8 leading-tight">
+              Start Anywhere. Grow Everywhere.
+              <br />
+              <span className="text-black text-lg sm:text-xl block mt-2">
+                Our programs evolve with you — whether you start with an idea, a project, or a competition.
+              </span>
             </p>
           </div>
-
-          {/* Scrollable Feature Content on the Right */}
           <aside
             className="col-span-12 lg:col-start-7 lg:col-span-6 space-y-32 mt-12 lg:mt-64"
             id="why-content"
             ref={whyRectRef}
           >
-            <div>
-            <Card
-              className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
-              number="🔬 University Lab Matching"
-              text="Connect with university labs and real researchers. Explore your curiosity through project-based mentorship."
-              image="/assets/lab.png"
-              inverted
-            />
-            </div>
-            <div>
+            {[
+              {
+                number: "🔬 University Lab Matching",
+                text: "Connect with university labs and real researchers. Explore your curiosity through project-based mentorship.",
+                image: "/assets/lab.png",
+                inverted: true
+              },
+              {
+                number: "🏆 Competition Mentorship",
+                text: "Join a challenge, build a team, and get coached by experts to turn ideas into award-winning projects.",
+                image: "/assets/grant.png"
+              },
+              {
+                number: "💰 Grant & Startup Support",
+                text: "Apply for funding, build your startup, and get support from mentors in business, tech, and design.",
+                image: "/assets/comp.png",
+                inverted: true
+              }
+            ].map((props, index) => (
               <Card
-                className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
-                number="🏆 Competition Mentorship"
-                text="Join a challenge, build a team, and get coached by experts to turn ideas into award-winning projects."
-                image="/assets/grant.png"
+                key={index}
+                className="min-w-[300px] sm:min-w-[500px] mx-auto mt-[200px] pointer-events-auto"
+                {...props}
               />
-            </div>
-            <div>
-              <Card
-                className="min-w-[500px] mr-[10px] ml-[20px] mt-[300px] pointer-events-auto"
-                number="💰 Grant & Startup Support"
-                text="Apply for funding, build your startup, and get support from mentors in business, tech, and design."
-                image="/assets/comp.png"
-                inverted
-              />
-            </div>
+            ))}
           </aside>
         </div>
       </section>
 
-      <section className="min-h-screen z-10">
+      <section className="min-h-screen z-10 overflow-x-auto">
         <div ref={cardsRectRef} className="HS">
           <HorizontalSlides>
-            <CardWithZoom
-              inverted
-              blank
-              text="Featured PROGRAMS"
-              front
-            />
-            <CardWithZoom
-              number="🔬"
-              text="Girls in STEM"
-              detail="A mentorship + lab matching program supporting girls in scientific research."
-              image="/assets/girlSTEM.png"
-              inverted
-            />
-            <CardWithZoom
-              number="🌍"
-              text="Equity in Innovation"
-              detail="Explore AI, data justice, and open government datasets to build research projects with social impact."
-              image="/assets/justice.jpg"
-              inverted
-            />
-            <CardWithZoom
-              number="🧠"
-              text="Research Without Barriers"
-              detail="Inclusive research pathways for all students. 1:1 coaching for underserved communities."
-              image="/assets/barrier-free.jpg"
-              inverted
-            />
-            <CardWithZoom
-              number="🌱"
-              text="Local to Global"
-              detail="Solve real issues in your community — and pitch your project to national competitions or grants."
-              image="/assets/community-research.jpg"
-              inverted
-
-            />
-            <CardWithZoom
-              inverted
-              blank
-            />
+            <CardWithZoom inverted blank text="Featured PROGRAMS" front />
+            <CardWithZoom number="🔬" text="Girls in STEM" detail="Mentorship + lab matching for girls in research." image="/assets/girlSTEM.png" inverted />
+            <CardWithZoom number="🌍" text="Equity in Innovation" detail="Build socially impactful projects with AI + open data." image="/assets/justice.jpg" inverted />
+            <CardWithZoom number="🧠" text="Research Without Barriers" detail="Inclusive 1:1 research coaching." image="/assets/barrier-free.jpg" inverted />
+            <CardWithZoom number="🌱" text="Local to Global" detail="Pitch community-driven projects to national competitions." image="/assets/community-research.jpg" inverted />
+            <CardWithZoom inverted blank />
           </HorizontalSlides>
         </div>
       </section>
 
-      <section className="min-h-screen bg-white py-24 px-6 md:px-20 z-10">
-        <h2 className="text-4xl font-bold text-blue-900 mb-12 text-center">What Our Students Say</h2>
-        <div className='w-full flex justify-center'>
+      <section className="min-h-[50vh] sm:min-h-screen bg-white py-24 px-4 sm:px-6 lg:px-20 z-10">
+        <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-12 text-center">What Our Students Say</h2>
+        <div className="w-full flex justify-center">
           <BounceCardsWithText
             testimonials={testimonials}
             transformStyles={transformStyles}

@@ -1,7 +1,8 @@
 'use client';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { Avatar} from 'antd'
+import { Avatar } from 'antd';
+import { useMediaQuery } from '@studio-freight/hamo'; // ✅ ADD this!
 
 export default function BounceCardsWithText({
   className = '',
@@ -14,6 +15,8 @@ export default function BounceCardsWithText({
   transformStyles = [],
   enableHover = false,
 }) {
+  const isMobile = useMediaQuery('(max-width: 768px)'); // ✅ Detect mobile
+
   useEffect(() => {
     gsap.fromTo(
       '.card',
@@ -107,15 +110,17 @@ export default function BounceCardsWithText({
       {testimonials.map((item, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} absolute bg-white text-black w-[240px] aspect-square rounded-[30px] shadow-lg border border-gray-300 p-6 flex flex-col justify-between text-m`}
+          className={`card card-${idx} absolute bg-white text-black rounded-[30px] shadow-lg border border-gray-300 p-6 flex flex-col justify-between text-m`}
           style={{
+            width: isMobile ? '50%' : '240px', // ✅ Responsive width!
+            aspectRatio: '1/1',
             transform: transformStyles[idx] || 'none',
           }}
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
         >
           <p className="italic mb-4">“{item.quote}”</p>
-        
+
           <div className="flex items-center gap-3 mt-auto">
             {/* <Avatar src={item.image} size={48} /> */}
             <div className="font-semibold">
@@ -123,7 +128,7 @@ export default function BounceCardsWithText({
               <div className="text-gray-600 text-sm">{item.grade}</div>
             </div>
           </div>
-        </div>      
+        </div>
       ))}
     </div>
   );

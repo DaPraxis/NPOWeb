@@ -5,7 +5,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMediaQuery } from '@studio-freight/hamo'
 
-// Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
@@ -29,13 +28,12 @@ export const HorizontalSlides = ({ children }) => {
         scrollTrigger: {
           trigger: wrapperRef.current,
           start: 'top+=100 top',
-          end: 'bottom 10%',
+          end: () => `+=${totalWidth}`,
           scrub: true,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
-
       })
     }, wrapperRef)
 
@@ -44,20 +42,20 @@ export const HorizontalSlides = ({ children }) => {
 
   return (
     <div ref={wrapperRef} className="relative w-full">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {!isMobile ? (
+      {!isMobile ? (
+        <div className="sticky top-0 h-screen overflow-hidden">
           <div
             ref={elementRef}
-            className="inline-flex will-change-transform"
+            className="inline-flex will-change-transform px-4 sm:px-8 gap-4"
           >
             {children}
           </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center gap-8">
-            {children}
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center px-4 sm:px-8 gap-12 py-12">
+          {children}
+        </div>
+      )}
     </div>
   )
 }
