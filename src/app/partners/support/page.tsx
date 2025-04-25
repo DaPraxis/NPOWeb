@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import ZeffyDonation from './Donation';
+import ScrollReveal from '@/blocks/TextAnimations/ScrollReveal/ScrollReveal'
 
 const GenerativeLandscape = dynamic(() => import('@/Components/Animation/GenerativeLandscape'), {
   ssr: false,
@@ -35,11 +36,11 @@ export default function SupportUsPage() {
 
         {/* Animated canvas fading in on top */}
         <div
-          className={`absolute inset-0 z-0 transition-opacity duration-[2000ms] ease-out ${
+          className={`absolute inset-0 z-0 transition-opacity duration-[10000ms] ease-out ${
             canvasVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <GenerativeLandscape />
+          <GenerativeLandscape/>
         </div>
 
         {/* Overlay tint for contrast */}
@@ -52,20 +53,29 @@ export default function SupportUsPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-40 px-6 text-center max-w-4xl mx-auto sm:text-left">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">
-          Your Support Powers Bold Futures
-        </h2>
-        <p className="text-muted-foreground text-lg leading-relaxed text-left">
-          At <strong>FutureEra Research Institute</strong>, we’re building more than just programs —
-          we’re building access, equity, and opportunity. From youth-led tech projects to mentorship
-          in research labs, our mission is to ensure that every student — regardless of identity,
-          income, or background — has the tools, support, and voice to lead.
-        </p>
-        <p className="text-muted-foreground text-lg leading-relaxed mt-4 text-left">
-          With your help, we’re creating a generation of changemakers who are not only part of the
-          future — they’re shaping it.
-        </p>
+      <section className="py-50 px-6 text-center max-w-4xl mx-auto sm:text-left">
+        <ScrollReveal 
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          containerClassName=""
+          textClassName=""
+        >
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6">
+            Your Support Powers Bold Futures
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed text-left">
+            At <strong>FutureEra Research Institute</strong>, we’re building more than just programs —
+            we’re building access, equity, and opportunity. From youth-led tech projects to mentorship
+            in research labs, our mission is to ensure that every student — regardless of identity,
+            income, or background — has the tools, support, and voice to lead.
+          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed mt-4 text-left">
+            With your help, we’re creating a generation of changemakers who are not only part of the
+            future — they’re shaping it.
+          </p>
+        </ScrollReveal>
       </section>
 
       {/* Impact Strip */}
