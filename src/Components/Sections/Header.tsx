@@ -149,12 +149,15 @@ export function Header() {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/news" title="News & Highlights">
+                  <ListItem href="/publication" title="Canadian Youth Journal of AI for Science 2026">
+                    Foster youth research and science advancement.
+                  </ListItem>
+                  {/* <ListItem href="/news" title="News & Highlights">
                     Our milestones, awards, and community outreach.
                   </ListItem>
                   <ListItem href="/impact#outreach" title="Outreach">
                     School visits, events, and workshops.
-                  </ListItem>
+                  </ListItem> */}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

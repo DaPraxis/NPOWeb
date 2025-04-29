@@ -3,6 +3,11 @@
 import { useState } from "react"
 import { RESOURCES } from "@/config/resource-hub"
 import { ResourceCard } from "@/Components/Card/ResourceCard"
+import dynamic from 'next/dynamic';
+
+const PublicationCover = dynamic(() => import('@/app/students/PublicationCover'), {
+  ssr: false,
+});
 
 import {
   Carousel,
@@ -29,13 +34,43 @@ export default function StudentsPage() {
         <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('/assets/barrier-free.jpg')] bg-cover bg-center" />
       </section>
 
-      {/* Highlight Band
-      <section className="bg-green-400 text-white px-6 md:px-20 py-8 my-4">
-        <p className="text-2xl md:text-xl font-semibold max-w-4xl">
-          Start with a project, research, or competition you're passionate about —
-          and we’ll support you with the right mentor and team to help make your dream come true.
-        </p>
-      </section> */}
+      <section className="px-6 py-12">
+        <div className="min-h-1/2 max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
+
+          {/* 🖼️ Cover Section */}
+          <div className="flex-1 flex justify-center">
+            {/* <PublicationCover preSeed={2708110074} coverText={"Canadian Youth Journal of"} coverText2="AI for Science"/> */}
+            <img
+              src="assets/papers/pub1.png"  // <-- update with your actual image path
+              alt="Canadian Youth Journal Cover"
+              className="w-full"
+            />
+          </div>
+
+          {/* 📝 Text Section */}
+          <div className="flex-1 text-center md:text-left py-35">
+            <h2 className="text-4xl font-bold mb-6 text-indigo-700">
+              Canadian Youth Journal of AI for Science
+            </h2>
+            <p className="text-gray-600 mb-8 text-lg">
+              A national publication empowering youth-led inquiry in Artificial Intelligence and Scientific Innovation.
+            </p>
+            <p className="text-gray-500 text-m italic mb-8">
+              *Accepting submissions for the 2025 edition now!*
+            </p>
+
+            <div className="flex justify-center md:justify-start">
+              <a
+                href="/publication" // <-- Change this link!
+                className="inline-block bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-indigo-700 transition"
+              >
+                Submit Your Paper
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* Layout */}
       <div className="flex flex-col md:flex-row px-6 md:px-20 py-16 gap-10">
@@ -82,6 +117,7 @@ export default function StudentsPage() {
           </Carousel>
         </div>
       </div>
+
     </div>
   )
 }

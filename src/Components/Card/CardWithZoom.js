@@ -86,7 +86,7 @@ export const CardWithZoom = ({ number, text, detail, image, className = '', inve
       <SpotLightCard
         ref={ref}
         className={cn(
-          'w-full sm:min-w-[500px] mx-auto p-6 mt-20 sm:mt-[300px] flex flex-col items-center justify-center rounded-2xl bg-[#111] shadow-lg custom-spotlight-card'
+          'w-full sm:min-w-[500px] mx-auto p-6 mt-20 sm:mt-[300px] flex flex-col items-center justify-center rounded-2xl bg-[#111] shadow-lg custom-spotlight-card mr-10 sm:mr-3'
         )}
         spotlightColor="rgba(255, 255, 255, 1)"
         style={{ transform: isMobile ? undefined : `scale(${scale})` }}

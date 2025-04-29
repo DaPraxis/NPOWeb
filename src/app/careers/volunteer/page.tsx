@@ -119,7 +119,7 @@ export default function VolunteerPage() {
             Applications are open year-round. No experience required — just a passion to help and grow.
           </p>
           <a
-            href="/contact#volunteer"
+            href="/careers/contact"
             className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
           >
             Apply to Volunteer

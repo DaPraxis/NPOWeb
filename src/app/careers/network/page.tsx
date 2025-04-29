@@ -55,7 +55,7 @@ export default function NetworkInstructorPage() {
             We're always looking for compassionate and committed instructors to join our growing team.
           </p>
           <a
-            href="/contact#instructor"
+            href="/careers/contact"
             className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
           >
             Contact Us to Learn More

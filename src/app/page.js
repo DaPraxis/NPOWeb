@@ -241,11 +241,11 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <a href="/about" aria-label="Read our story">
+          {/* <a href="/about" aria-label="Read our story">
             <button className="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition">
               Read our Story
             </button>
-          </a>
+          </a> */}
         </div>
         <div className="w-full md:w-1/2 mt-12 md:mt-0">
           <img
@@ -305,6 +305,7 @@ export default function Home() {
         <div ref={cardsRectRef} className="HS">
           <HorizontalSlides>
             <CardWithZoom inverted blank text="Featured PROGRAMS" front />
+            <CardWithZoom number="👩🏻‍🔬" text="AI for Science + Society" detail="Call for Papers! Publish in peer-reviewed, youth-led research venue." image="/assets/ai-society.png" link="/publication" inverted />
             <CardWithZoom number="🔬" text="Girls in STEM" detail="Mentorship + lab matching for girls in research." image="/assets/girlSTEM.png" inverted />
             <CardWithZoom number="🌍" text="Equity in Innovation" detail="Build socially impactful projects with AI + open data." image="/assets/justice.jpg" inverted />
             <CardWithZoom number="🧠" text="Research Without Barriers" detail="Inclusive 1:1 research coaching." image="/assets/barrier-free.jpg" inverted />
