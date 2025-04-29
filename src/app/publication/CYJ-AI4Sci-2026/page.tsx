@@ -18,7 +18,7 @@ export default function PublicationPage() {
             Canadian Youth Journal of AI for Science 2026 Spring
           </h1>
           <p className="text-lg text-gray-600 text-left">
-            We invite high school students across Canada to submit original research papers in the field of Artificial Intelligence and scientific inquiry. Selected papers will be published in the 2026 Spring edition.
+            We invite all high school students across Canada to submit original research papers in the field of Artificial Intelligence and scientific inquiry. Selected papers will be published in the 2026 Spring edition.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function PublicationPage() {
             <li>Eligibility: High school students in Canada (Grades 8–12).</li>
             <li>Team submissions allowed (up to 3 students per paper).</li>
             <li>
-              <span className="font-semibold">First Round Submission:</span> 
+              <span className="font-semibold">First Round Submission: </span> 
               Papers can be submitted in any readable format (Word or PDF). No strict template required initially.
             </li>
             <li>
@@ -109,7 +109,7 @@ export default function PublicationPage() {
               </ul>
             </li>
             <li>
-              <span className="font-semibold">Second Round (Camera-Ready Submission):</span> 
+              <span className="font-semibold">Second Round (Camera-Ready Submission): </span> 
               After acceptance, authors must reformat papers using the official templates: 
               <a 
                 href="https://www.overleaf.com/latex/templates/ieee-conference-template/grfzhhncsfqn"
@@ -153,12 +153,25 @@ export default function PublicationPage() {
 
         {/* Review Process */}
         <div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Review Process</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Review Process & Final Selection</h2>
           <p className="text-gray-600 mb-4">
-            All submissions will undergo single-blind peer review. Each paper will receive detailed feedback from reviewers, including university researchers and graduate students. Final selections will be based on scientific rigor, clarity of presentation, and potential impact.
+            All submissions will undergo a rigorous single-blind peer review. Each paper will receive constructive feedback from a panel of reviewers composed of university researchers, graduate students, and domain experts. Students are encouraged to treat this process as a valuable learning experience and a chance to improve their work.
           </p>
+          <p className="text-gray-600 mb-4">
+            Due to the expected volume of submissions, only a fraction of high-quality papers will be selected as <span className="font-semibold">finalists</span>. Finalist papers will be officially published in the 2026 Spring edition of the Canadian Youth Journal of AI for Science.
+          </p>
+          <p className="text-gray-600 mb-4">
+            Our internal <a href="publication/CYJ-AI4Sci-2026/committee" className="text-blue-600 underline font-medium hover:text-blue-800">Review Committee</a> will also nominate a select number of outstanding papers for special recognition through the following awards:
+          </p>
+          <ul className="list-disc list-inside ml-6 text-gray-600 mb-4">
+            <li><span className="font-medium">Youth Impact Award</span></li>
+            <li><span className="font-medium">Youth Innovation Award</span></li>
+            <li><span className="font-medium">Gold Award</span></li>
+            <li><span className="font-medium">Silver Award</span></li>
+            <li><span className="font-medium">Bronze Award</span></li>
+          </ul>
           <p className="text-gray-600">
-            Students are encouraged to view the review process as an opportunity for mentorship and improvement.
+            These recognitions are based on predefined evaluation criteria. For full details, visit the <a href="publication/CYJ-AI4Sci-2026/rubric" className="text-blue-600 underline font-medium hover:text-blue-800">Award Rubric</a> page.
           </p>
         </div>
 
