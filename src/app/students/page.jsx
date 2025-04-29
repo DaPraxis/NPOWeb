@@ -61,7 +61,7 @@ export default function StudentsPage() {
 
             <div className="flex justify-center md:justify-start">
               <a
-                href="/publication" // <-- Change this link!
+                href="/publication/CYJ-AI4Sci-2026"
                 className="inline-block bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-indigo-700 transition"
               >
                 Submit Your Paper

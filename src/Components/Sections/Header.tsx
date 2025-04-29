@@ -140,7 +140,7 @@ export function Header() {
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-green-100 to-white p-6 no-underline outline-none focus:shadow-md"
-                        href="/news"
+                        href="/publication/CYJ-AI4Sci-2026"
                       >
                         <div className="mb-2 mt-4 text-lg font-medium">Impact Stories</div>
                         <p className="text-sm leading-tight text-muted-foreground">
@@ -149,7 +149,7 @@ export function Header() {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/publication" title="Canadian Youth Journal of AI for Science 2026">
+                  <ListItem href="/publication/CYJ-AI4Sci-2026" title="Canadian Youth Journal of AI for Science 2026">
                     Foster youth research and science advancement.
                   </ListItem>
                   {/* <ListItem href="/news" title="News & Highlights">
