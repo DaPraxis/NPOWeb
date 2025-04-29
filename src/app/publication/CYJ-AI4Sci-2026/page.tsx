@@ -1,12 +1,15 @@
 'use client';
 
 import React from 'react';
+import { Timeline, Steps } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
 
 export default function PublicationPage() {
   return (
     <section className="px-6 py-30">
       <div className="max-w-5xl mx-auto space-y-20">
 
+        {/* Section Title */}
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 my-10 text-left">
             Call for Papers:
@@ -19,36 +22,56 @@ export default function PublicationPage() {
           </p>
         </div>
 
-        {/* Key Dates */}
-        <div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Key Dates</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-gray-700">
-              <thead className="border-b">
-                <tr>
-                  <th className="py-2 px-4">Milestone</th>
-                  <th className="py-2 px-4">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b">
-                  <td className="py-2 px-4">Abstract Submission Deadline</td>
-                  <td className="py-2 px-4">September 10, 2025</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="py-2 px-4">Full Paper Submission Deadline</td>
-                  <td className="py-2 px-4">September 24, 2025</td>
-                </tr>
-                <tr className="border-b">
-                  <td className="py-2 px-4">Review Feedback Released</td>
-                  <td className="py-2 px-4">October 20, 2025</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4">Final Camera-Ready Submission</td>
-                  <td className="py-2 px-4">November 5, 2025</td>
-                </tr>
-              </tbody>
-            </table>
+        {/* Timeline + Cover Visual */}
+        <div className="mt-10 flex flex-col md:flex-row items-start gap-10">
+          {/* Timeline */}
+          <div className="w-full md:w-7/12">
+            <h3 className="text-xl font-semibold text-gray-800 mb-6">Submission Timeline</h3>
+            <Timeline
+              mode="left"
+              items={[
+                {
+                  label: 'August 2025',
+                  children: 'Submission Portal Opens',
+                  color: 'green',
+                },
+                {
+                  label: 'September 10, 2025',
+                  children: 'First Round: Abstract Submission (no strict format)',
+                  dot: <ClockCircleOutlined style={{ fontSize: '16px' }} />
+                },
+                {
+                  label: 'September 24, 2025',
+                  children: 'First Round: Full Paper Submission (no strict format)',
+                  dot: <ClockCircleOutlined style={{ fontSize: '16px' }} />
+                },
+                {
+                  label: 'October 20, 2025',
+                  children: 'Peer Review Feedback Released',
+                },
+                {
+                  label: 'November 5, 2025',
+                  children: 'Second Round: Camera-Ready Submission (official templates required)',
+                  dot: <ClockCircleOutlined style={{ fontSize: '16px' }} />
+                },
+                {
+                  label: 'Spring 2026',
+                  children: 'Publication in Journal',
+                  dot: '🎉',
+                },
+              ]}
+              className="text-gray-700"
+            />
+          </div>
+          {/* Cover */}
+          <div className="w-full md:w-5/12 flex justify-center">
+            {/* You can use an <img> or PublicationCover component here */}
+            <img
+              src="/assets/papers/pub1.png"
+              alt="Journal Cover"
+              className="r max-w-full"
+            />
+            {/* OR: <PublicationCover preSeed={2708110074} coverText={"Canadian Youth Journal of"} coverText2="AI for Science" /> */}
           </div>
         </div>
 
@@ -56,12 +79,11 @@ export default function PublicationPage() {
         <div>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Topics of Interest</h2>
           <ul className="list-disc list-inside text-gray-600 space-y-2">
-            <li>AI applications in biology, physics, chemistry, and environmental science</li>
             <li>Machine learning methods: supervised, unsupervised, reinforcement learning</li>
+            <li>AI applications in science, including biology, physics, chemistry, environmental science, etc.</li>
             <li>Data science and big data analytics</li>
             <li>Ethical and responsible AI development</li>
             <li>Robotics, autonomous systems, and planning</li>
-            <li>Computational neuroscience and cognitive science</li>
             <li>Interdisciplinary research combining AI with other fields</li>
           </ul>
         </div>
@@ -70,13 +92,64 @@ export default function PublicationPage() {
         <div>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Submission Guidelines</h2>
           <ul className="list-disc list-inside text-gray-600 space-y-2">
-            <li>Eligibility: High school students in Canada (Grades 8–12)</li>
-            <li>Team submissions allowed (up to 3 students per paper)</li>
-            <li>Paper length: 4–8 pages (excluding references)</li>
-            <li>Templates: LaTeX and Word templates will be provided (release July 2025)</li>
-            <li>Original work only.</li>
+            <li>Eligibility: High school students in Canada (Grades 8–12).</li>
+            <li>Team submissions allowed (up to 3 students per paper).</li>
+            <li>
+              <span className="font-semibold">First Round Submission:</span> 
+              Papers can be submitted in any readable format (Word or PDF). No strict template required initially.
+            </li>
+            <li>
+              Word Count Guidelines for First Round:
+              <ul className="list-disc list-inside ml-6">
+                <li>Abstract: 150–300 words</li>
+                <li>Introduction: 400–600 words</li>
+                <li>Method/Experiment: 500–800 words</li>
+                <li>Results: 300–500 words</li>
+                <li>Discussion/Conclusion: 300–500 words</li>
+              </ul>
+            </li>
+            <li>
+              <span className="font-semibold">Second Round (Camera-Ready Submission):</span> 
+              After acceptance, authors must reformat papers using the official templates: 
+              <a 
+                href="https://www.overleaf.com/latex/templates/ieee-conference-template/grfzhhncsfqn"
+                className="text-blue-600 underline font-semibold hover:text-blue-800 mx-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LaTeX
+              </a> 
+              or 
+              <a 
+                href="https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/conference-template-letter.docx"
+                className="text-blue-600 underline font-semibold hover:text-blue-800 mx-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Word
+              </a>.
+            </li>
+            <li>
+              All figures, charts, and images must be high resolution:
+              <ul className="list-disc list-inside ml-6">
+                <li>Minimum resolution: <span className="font-semibold">300 DPI</span> for all images.</li>
+                <li>Preferred formats: <span className="font-semibold">PNG</span>, <span className="font-semibold">SVG</span>, or <span className="font-semibold">PDF</span> (for vector graphics).</li>
+                <li>Ensure all labels, text, and data points in images are clearly readable when scaled.</li>
+              </ul>
+            </li>
+            <li>Original work only. Plagiarism will result in disqualification.</li>
+            <li>
+              All papers must properly cite prior work. Authors must:
+              <ul className="list-disc list-inside ml-6">
+                <li>Use either <span className="font-semibold">IEEE citation style</span> or <span className="font-semibold">APA 7th Edition style</span>.</li>
+                <li>Include a bibliography at the end of the paper.</li>
+                <li>Use simple inline citations during the First Round; <span className="font-semibold">full formatting</span> is required for the Camera-Ready version.</li>
+                <li>Ensure citations are complete — plagiarism or improper citation will result in disqualification.</li>
+              </ul>
+            </li>
           </ul>
         </div>
+
 
         {/* Review Process */}
         <div>
