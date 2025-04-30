@@ -161,7 +161,7 @@ export default function PublicationPage() {
             Due to the expected volume of submissions, only a fraction of high-quality papers will be selected as <span className="font-semibold">finalists</span>. Finalist papers will be officially published in the 2026 Spring edition of the Canadian Youth Journal of AI for Science.
           </p>
           <p className="text-gray-600 mb-4">
-            Our internal <a href="publication/CYJ-AI4Sci-2026/committee" className="text-blue-600 underline font-medium hover:text-blue-800">Review Committee</a> will also nominate a select number of outstanding papers for special recognition through the following awards:
+            Our internal <a href="publication/committee" className="text-blue-600 underline font-medium hover:text-blue-800">Review Committee</a> will also nominate a select number of outstanding papers for special recognition through the following awards:
           </p>
           <ul className="list-disc list-inside ml-6 text-gray-600 mb-4">
             <li><span className="font-medium">Youth Impact Award</span></li>
@@ -171,7 +171,7 @@ export default function PublicationPage() {
             <li><span className="font-medium">Bronze Award</span></li>
           </ul>
           <p className="text-gray-600">
-            These recognitions are based on predefined evaluation criteria. For full details, visit the <a href="publication/CYJ-AI4Sci-2026/rubric" className="text-blue-600 underline font-medium hover:text-blue-800">Award Rubric</a> page.
+            These recognitions are based on predefined evaluation criteria. For full details, visit the <a href="/publication/rubric" className="text-blue-600 underline font-medium hover:text-blue-800">Award Rubric</a> page.
           </p>
         </div>
 

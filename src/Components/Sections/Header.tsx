@@ -66,6 +66,69 @@ export function Header() {
 
         <NavigationMenu>
           <NavigationMenuList>
+            {/* Impact */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Our Impact</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] md:grid-cols-1">
+                  {/* <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-green-100 to-white p-6 no-underline outline-none focus:shadow-md"
+                        href="/publication/CYJ-AI4Sci-2026"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium">Impact Stories</div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Read how our students are making a difference.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li> */}
+                  <ListItem href="/publication/CYJ-AI4Sci-2026">
+                    <div className="flex items-center gap-4 w-full">
+                      {/* Text section */}
+                      <div className="flex-1">
+                        <h3 className="text-lg font-medium text-gray-900">
+                          Canadian Youth Journal of AI for Science 2026
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          Foster youth research and science advancement.
+                        </p>
+                      </div>
+
+                      {/* Image aligned with text block */}
+                      <img
+                        src="/assets/papers/pub1.png"
+                        alt="Journal Cover"
+                        className="h-[80px] w-auto object-contain"
+                      />
+                    </div>
+                  </ListItem>
+
+                  <ListItem href="/publication/rubric" title="Judging Rubrics">
+                    Updated publication rubrics @ 2026, how to excel in research
+                  </ListItem>
+
+                  <ListItem href="/publication/committee" title="Publication Committee">
+                    Action Research Committee for Peer-Review & Research @ 2026
+                  </ListItem>
+
+                  {/* <ListItem href="/publication/CYJ-AI4Sci-2026" title="Canadian Youth Journal of AI for Science 2026">
+                    Foster youth research and science advancement.
+                  </ListItem>
+                  <ListItem href="/publication/CYJ-AI4Sci-2026" title="Canadian Youth Journal of AI for Science 2026">
+                    Foster youth research and science advancement.
+                  </ListItem> */}
+                  {/* <ListItem href="/news" title="News & Highlights">
+                    Our milestones, awards, and community outreach.
+                  </ListItem>
+                  <ListItem href="/impact#outreach" title="Outreach">
+                    School visits, events, and workshops.
+                  </ListItem> */}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
             {/* For Students */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>For Students</NavigationMenuTrigger>
@@ -127,37 +190,6 @@ export function Header() {
                   <ListItem href="/partners/contact" title="Contact Us">
                     Reach out for collaborations or school inquiries.
                   </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            {/* Impact */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Our Impact</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-green-100 to-white p-6 no-underline outline-none focus:shadow-md"
-                        href="/publication/CYJ-AI4Sci-2026"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">Impact Stories</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Read how our students are making a difference.
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/publication/CYJ-AI4Sci-2026" title="Canadian Youth Journal of AI for Science 2026">
-                    Foster youth research and science advancement.
-                  </ListItem>
-                  {/* <ListItem href="/news" title="News & Highlights">
-                    Our milestones, awards, and community outreach.
-                  </ListItem>
-                  <ListItem href="/impact#outreach" title="Outreach">
-                    School visits, events, and workshops.
-                  </ListItem> */}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
