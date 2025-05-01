@@ -109,9 +109,9 @@ export function Header() {
                     Updated publication rubrics @ 2026, how to excel in research
                   </ListItem>
 
-                  <ListItem href="/publication/committee" title="Publication Committee">
+                  {/* <ListItem href="/publication/committee" title="Publication Committee">
                     Action Research Committee for Peer-Review & Research @ 2026
-                  </ListItem>
+                  </ListItem> */}
 
                   {/* <ListItem href="/publication/CYJ-AI4Sci-2026" title="Canadian Youth Journal of AI for Science 2026">
                     Foster youth research and science advancement.

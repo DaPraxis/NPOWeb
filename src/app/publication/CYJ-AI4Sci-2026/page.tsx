@@ -161,7 +161,7 @@ export default function PublicationPage() {
             Due to the expected volume of submissions, only a fraction of high-quality papers will be selected as <span className="font-semibold">finalists</span>. Finalist papers will be officially published in the 2026 Spring edition of the Canadian Youth Journal of AI for Science.
           </p>
           <p className="text-gray-600 mb-4">
-            Our internal <a href="publication/committee" className="text-blue-600 underline font-medium hover:text-blue-800">Review Committee</a> will also nominate a select number of outstanding papers for special recognition through the following awards:
+            Our internal Review Committee will also nominate a select number of outstanding papers for special recognition through the following awards:
           </p>
           <ul className="list-disc list-inside ml-6 text-gray-600 mb-4">
             <li><span className="font-medium">Youth Impact Award</span></li>
@@ -193,6 +193,23 @@ export default function PublicationPage() {
             Authors must adhere to the FutureEra Code of Conduct and the Code of Academic Integrity. All submissions must be the students' original work, and proper citations must be provided for referenced material.
           </p>
         </div>
+
+        {/* Partners Section */}
+        <section className="bg-gray-50 py-16 px-6 mt-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">Academic & Peer Review Partners</h2>
+            <p className="text-gray-600 mb-10">Our peer review process is supported by graduate students, researchers, and mentors affiliated with leading Canadian universities. Their involvement ensures the academic quality and rigor of all accepted publications.</p>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center justify-items-center">
+              <img src="/assets/partners/uoft.png" alt="University of Toronto" className="h-12 object-contain" />
+              <img src="/assets/partners/ubc.png" alt="University of British Columbia" className="h-12 object-contain" />
+              <img src="/assets/partners/mcgill.png" alt="McGill University" className="h-12 object-contain" />
+              <img src="/assets/partners/western.jpg" alt="Western University" className="h-12 object-contain" />
+              <img src="/assets/partners/mcmaster.png" alt="McMaster University" className="h-12 object-contain" />
+            </div>
+          </div>
+        </section>
+
 
       </div>
     </section>
