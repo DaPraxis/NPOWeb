@@ -1,4 +1,5 @@
 'use client';
+import { useWindowSize } from 'react-use' // or your preferred window hook
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Text3D, OrbitControls } from '@react-three/drei';
@@ -123,6 +124,10 @@ export default function Tumbling3DText({
     setWidthMap(prev => (prev[key] === width ? prev : { ...prev, [key]: width }));
   };
 
+  const { width: screenWidth } = useWindowSize()
+  const scaleFactor = screenWidth < 768 ? 0.7 : 1 // 50% scale on mobile
+  const xShift = scaleFactor < 1 ? 1.5 : 0 // tweak this number if needed
+
   return (
     <Canvas camera={{ position: [0, 0, 20], fov: 50 }}>
       <ambientLight intensity={3} />
@@ -137,7 +142,7 @@ export default function Tumbling3DText({
         const centerOffset = -totalLineWidth / 2;
 
         return (
-          <group key={lineIdx} position={[centerOffset, y, 0]}>
+          <group key={lineIdx} position={[centerOffset + xShift / scaleFactor, y, 0]} scale={[scaleFactor, scaleFactor, scaleFactor]}>
             {line.split('').map((char, i) => {
               const key = `${lineIdx}-${i}`;
               const charWidth = charWidths[i];

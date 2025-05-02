@@ -14,9 +14,9 @@ export default function Footer() {
         <div>
           <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#why-wrapper" className="hover:underline">Our Programs</a></li>
-            <li><a href="#cards-start" className="hover:underline">Featured Projects</a></li>
-            <li><a href="#contact" className="hover:underline">Get Involved</a></li>
+          <li><a href="/publication/CYJ-AI4Sci-2026" className="hover:underline">CYJ-AI4Sci Call for Papers!</a></li>
+            <li><a href="/students" className="hover:underline">Our Programs</a></li>
+            <li><a href="/partners" className="hover:underline">Future Partnership</a></li>
             <li><a href="mailto:info@futureera.org" className="hover:underline">Contact Us</a></li>
           </ul>
         </div>

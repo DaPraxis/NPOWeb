@@ -14,56 +14,47 @@ import {
 } from "@/Components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
-
 export function Header() {
   const [showNav, setShowNav] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      setShowNav(currentScrollY < lastScrollY || currentScrollY < 50)
+      const isScrollingUp = currentScrollY < lastScrollY || currentScrollY < 50
+  
+      setShowNav(isScrollingUp)
+  
+      // Only collapse mobile menu — don’t auto-expand!
+      if (!isScrollingUp && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false)
+      }
+  
       setLastScrollY(currentScrollY)
     }
-
+  
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+  }, [lastScrollY, isMobileMenuOpen])
+  
+
+  const handleMobileLinkClick = () => setIsMobileMenuOpen(false)
 
   return (
     <div className={cn(
       "fixed top-0 left-0 z-50 w-full bg-white transition-transform duration-300 shadow-md",
       showNav ? "translate-y-0" : "-translate-y-full"
     )}>
-      <div className="mx-auto flex max-w-8xl items-center justify-between pr-7 py-2 pl-15">
-        <Link href="/" className="text-lg font-bold">
-            <img src="/assets/logo.svg" alt="FutureEra logo" className="h-13 w-auto py-1" />
-            <span className="sr-only">FutureEra</span> {/* for screen readers */}
+      <div className="mx-auto flex max-w-8xl items-center justify-between px-4 py-2">
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2">
+          <img src="/assets/logo.svg" alt="FutureEra logo" className="h-10 w-auto" />
+          <span className="sr-only">FutureEra</span>
         </Link>
 
+        {/* Desktop Nav */}
+        <div className="hidden md:block">
         <NavigationMenu>
           <NavigationMenuList>
             {/* Impact */}
@@ -233,7 +224,112 @@ export function Header() {
 
           </NavigationMenuList>
         </NavigationMenu>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden p-2 text-gray-600 hover:text-black focus:outline-none"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={isMobileMenuOpen
+                ? "M6 18L18 6M6 6l12 12"
+                : "M4 6h16M4 12h16M4 18h16"}
+            />
+          </svg>
+        </button>
       </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white shadow-md border-t border-gray-200 px-6 py-6">
+          <div className="space-y-6">
+
+            <div>
+              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Our Impact</p>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/publication/CYJ-AI4Sci-2026" onClick={handleMobileLinkClick} className="block text-gray-800 font-medium hover:text-blue-700">
+                    Canadian Youth Journal
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/publication/rubric" onClick={handleMobileLinkClick} className="block text-gray-800 hover:text-blue-700">
+                    Judging Rubrics
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">For Students</p>
+              <ul className="space-y-2">
+                <li><Link href="/students#scholarships" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Scholarships</Link></li>
+                <li><Link href="/students#lab-matching" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Lab Matching</Link></li>
+                <li><Link href="/students#competitions" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Competitions</Link></li>
+                <li><Link href="/students#grants" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Grants</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">For Partners</p>
+              <ul className="space-y-2">
+                <li><Link href="/partners/opportunities" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Opportunities</Link></li>
+                <li><Link href="/partners/support" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Support Us</Link></li>
+                <li><Link href="/partners/contact" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Contact</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Get Involved</p>
+              <ul className="space-y-2">
+                <li><Link href="/careers/instructors" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Become an Instructor</Link></li>
+                <li><Link href="/careers/volunteer" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Volunteers</Link></li>
+                <li><Link href="/careers/contact" onClick={handleMobileLinkClick} className="block hover:text-blue-700">Connect with Us</Link></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      )}
     </div>
   )
 }
+
+// Desktop dropdown group
+function Dropdown({ title, children }: { title: string, children: React.ReactNode }) {
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <ul className="grid gap-3 p-4 md:w-[400px]">{children}</ul>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  )
+}
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a"> & { title?: string; className?: string }
+>(({ title, children, className, ...props }, ref) => (
+  <li>
+    <NavigationMenuLink asChild>
+      <a
+        ref={ref}
+        className={cn(
+          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+          className
+        )}
+        {...props}
+      >
+        {title && <div className="text-sm font-medium leading-none">{title}</div>}
+        {children && <p className="line-clamp-2 text-sm text-muted-foreground">{children}</p>}
+      </a>
+    </NavigationMenuLink>
+  </li>
+))
+
