@@ -46,11 +46,11 @@ export function Header() {
       "fixed top-0 left-0 z-50 w-full bg-white transition-transform duration-300 shadow-md",
       showNav ? "translate-y-0" : "-translate-y-full"
     )}>
-      <div className="mx-auto flex max-w-8xl items-center justify-between px-4 py-2">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between py-2">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <img src="/assets/logo.svg" alt="FutureEra logo" className="h-10 w-auto" />
-          <span className="sr-only">FutureEra</span>
+          {/* <span className="text-lg font-bold">FutureEra</span> */}
         </Link>
 
         {/* Desktop Nav */}
